@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interest Calculator</title>
+    <style>
+      body {
+        height: 100vh;
+        margin: 0;
+        background-color: #212121;
+        color: aliceblue;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: larger;
+      }
+      form {
+        width: 600px;
+        border: 2px solid aliceblue;
+        border-radius: 20px;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+      }
+      div {
+        display: flex;
+        justify-content: space-evenly;
+      }
+      #submit{
+        align-self:center;
+        width: 335px;
+        height: 30px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <form>
+      <div>
+        <span>
+          <label for="capital">Capital:</label>
+          <input type="text" id="capital" required/><br /><br />
+          <label for="years">Years:</label>
+          <input type="text" id="years" required/><br /><br />
+          <label for="interest">Interest:</label>
+          <input type="text" id="interest" required/>
+        </span>
+        <span>
+          <label for="checkbox">Compound?</label>
+          <input type="checkbox" id="checkbox" /><br /><br />
+          <label for="resultBox">Result:</label>
+          <input type="text" id="resultBox" readonly/>
+        </span>
+      </div>
+      <br><br>
+      <input type="submit" value="Calculate" id="submit" />
+    </form>
+
+    <script src="./13_script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visual Studio Code - Code Editing. Redifined</title>
+    <link rel="shortcut icon" href="https://code.visualstudio.com/favicon.ico" type="image/x-icon">
+    <style>
+        *{
+            background-color: #0e0e0e;
+        }
+        span{
+            color: white;
+            font-weight: 550; 
+            cursor: pointer;
+        }
+        a{
+            color: lightgray;
+            margin-left: 15px;
+            cursor: pointer;
+            
+        }
+        input{
+            background-color: white;
+            border-radius: 5px;
+            padding: 6px;
+        }
+        button{
+            background-color: white;
+            border-radius: 5px;
+            padding: 6px;
+        }
+        .box{
+            display: flex;
+            justify-content: space-around;
+            border: 0.5px solid black;
+            padding: 20px;
+        }
+        .box2{
+            color: white;
+        }
+        #image1{
+            width: 20px; 
+            cursor: pointer;
+        }
+        #image2{
+            width: 1000px; 
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="box">
+            <div class="child1">
+                <img id="image1" src="https://code.visualstudio.com/favicon.ico" alt="image">
+                <span>Visual Studio Code</span>
+                <a target="_blank" href="/">Docs</a> 
+                <a href="/">Updates</a> 
+                <a href="/">Blog</a> 
+                <a href="/">API</a> 
+                <a href="/">Extensions</a> 
+                <a href="/">FAQs</a>
+                <a href="/">Learn</a>
+            </div>
+            
+            <div class="child2">
+                <label for="search"></label>
+                <input type="text" id="search" placeholder="Search Docs">
+                <button>Download</button>
+            </div>
+        </div>
+        <br/>
+    
+        <div class="box2">
+            <a href="/">Version 1.82</a> is now available! Read about the new features and fixes from July.
+        </div>
+        <img id="image2" src="https://code.visualstudio.com/assets/home/home-screenshot-mac-2x-v2.png" alt="" >
+    </div>
+
+</body>
+</html>
