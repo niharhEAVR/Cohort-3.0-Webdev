@@ -1,5 +1,5 @@
 {
-  "name": "01_our_own_created_http_server",
+  "name": "03_offline",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
