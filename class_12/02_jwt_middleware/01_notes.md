@@ -1,0 +1,3 @@
+**What is the purpose of `jwt_middleware`?**
+
+The purpose of `jwt_middleware` is to avoid repeatedly checking if the user has a valid token for each request or route. Instead of manually verifying the token on every route, we can create a middleware that performs the token verification once. After that, we can apply this middleware to every protected route, so the token verification is done automatically for each request.

@@ -3,14 +3,13 @@ const app = express();
 
 app.use(express.json());
 
-const users = [];
+const users = []; // global variable
 
 function generateToken() {
     let options = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
 
     let token = "";
     for (let i = 0; i < 32; i++) {
-        // use a simple function here
         token += options[Math.floor(Math.random() * options.length)];
     }
     return token;
@@ -18,25 +17,17 @@ function generateToken() {
 
 app.post("/signup", (req, res) => {
     const { userName, password } = req.body;
-
-    // Check if user already exists
-    if (users.find(user => user.User_Name === userName)) {
-        return res.json({
-            message: "This user already exists"
-        });
-    }
-
     // Add new user
     users.push({
         User_Name: userName,
         Password: password
     });
-    
+
     res.json({
         message: "Signed up successfully"
     });
-
     console.log(users);
+
 });
 
 app.post("/signin", (req, res) => {
@@ -44,18 +35,19 @@ app.post("/signin", (req, res) => {
 
     // Find user with matching credentials
     const findUser = users.find(user => user.User_Name === userName && user.Password === password);
+    // if the user not found then this valriable will store undefined, which means in js undefined is false
+    // but if you still confusing in this portion (signin) of the code then read 01_signin_protion.md
 
     if (findUser) {
-        // Generate a token and assign it to the user
         const userToken = generateToken();
-        findUser.Token = userToken; // Store token with the user object
+        findUser.Token = userToken;
 
-        return res.json({
-            Token: userToken,
-            user: findUser
+        res.json({
+            Token: userToken
         });
+        console.log(users)
     } else {
-        return res.status(404).send({
+        return res.status(403).send({
             message: "Invalid username or password"
         });
     }
