@@ -2,4 +2,4 @@ node_modules
 # because i created .giignore globally or in root directory thats why everytime i will install and node_module in any directory that node_module folder will goint to be ignore everytime
 # this is the best thing because if i forgot to delete the node_module it will get pushed on my github repo
 
-Some_Basic_Notes
+.env
