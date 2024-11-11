@@ -32,7 +32,8 @@ const purchaseSchema = new Schema({
 
 const userModel = mongoose.model("users", userSchema);
 const courseModel = mongoose.model("courses", courseSchema);
-const adminModel = mongoose.model("admin", adminSchema);
+const adminModel = mongoose.model("admin", adminSchema); // here is a slight bug that when i was signing up in admin route then a new collection got created automatically in my data base, even i am asigining it with admin, but admins collection got created (find out that bug)
+
 const purchaseModel = mongoose.model("purchases", purchaseSchema);
 
 module.exports = {
