@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="buttonParent"></div>
+    <script>
+        const state ={
+            count:0
+        }
+
+        function onButtonPress() {
+            state.count++
+            buttonComponentReRender()
+        }
+
+        function buttonComponentReRender() {
+            document.querySelector(".buttonParent").innerHTML = ""
+            const button = buttonComponent(state.count)
+            document.querySelector(".buttonParent").appendChild(button)
+            
+        }
+
+        function buttonComponent(count) {
+            const button = document.createElement("button")
+            button.innerHTML = "Counter " + count
+            button.setAttribute("onclick", "onButtonPress()")
+            return button
+        }
+        buttonComponentReRender()
+        // read 02_notes.md to know about the relation of this code with React
+    </script>
+</body>
+</html>

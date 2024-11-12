@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        <h3><b>Why we need React?</b></h3>
+        People realised it’s harder to do DOM manipulation the conventional way.
+        <br>
+        There were libraries that came into the picture that made it slightly easy, but still for a very big app it’s
+        very hard (JQuery).
+        <br>
+        Eventually, VueJS/React created a new syntax to do frontends
+        Under the hood, the react compiler convert your code to HTML/CSS/JS
+    </div>
+
+    <br><br><br>
+    <button>Counter 0</button>
+    <script>
+        document.querySelector("button").addEventListener("click", () => {
+            const current = document.querySelector("button").innerHTML;
+            const currentValue = current.split(" ")[1]
+            const increasedValue = parseInt(currentValue) + 1
+            document.querySelector("button").innerHTML = "Counter " + increasedValue
+        })
+    </script>
+</body>
+
+</html>
