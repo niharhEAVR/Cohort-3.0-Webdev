@@ -6,7 +6,7 @@ const { auth, JWT_SECRET } = require("./03_authentication")
 const app = express()
 
 async function databaseConnections(req, res, next) {
-    await mongoose.connect("<MongoDB connection url here>")
+    await mongoose.connect("<MongoDB connection url here> database name: todo_app_database")
     next()
 }
 
