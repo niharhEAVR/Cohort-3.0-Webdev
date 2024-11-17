@@ -3,3 +3,4 @@ node_modules
 # this is the best thing because if i forgot to delete the node_module it will get pushed on my github repo
 
 .env
+dist
