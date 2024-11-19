@@ -68,6 +68,39 @@ app.post("/api/v1/content", userMiddleware, async (req:Request, res:Response) =>
     
 })
 
+app.get("/api/v1/content", userMiddleware, async (req:Request, res:Response) => {
+    const userId = (req as Request & {userId: string}).userId
+    const content = await ContentModel.find({
+        userId: userId
+    }).populate("userId", "username")
+    res.json({
+        content
+    })
+    
+})
+
+app.delete("/api/v1/content", userMiddleware, async (req, res) => {
+    const contentId = req.body.contentId;
+
+    await ContentModel.deleteMany({
+        _id: contentId,
+        userId: req.userId
+    })
+
+    res.json({
+        message: "Deleted"
+    })
+})
+
+app.post("/api/v1/brain/share", (req, res) => {
+
+})
+
+app.get("/api/v1/brain/:shareLink", (req, res) => {
+
+})
+
+
 app.listen(3000,()=>{
     console.log("http://localhost:3000")
 })
