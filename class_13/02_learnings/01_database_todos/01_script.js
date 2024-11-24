@@ -1,12 +1,14 @@
 const express = require('express')
 const mongoose = require('mongoose')
+const dotenv = require("dotenv")
 const jwt = require('jsonwebtoken')
 const { userModel, todoModel } = require("./02_database")
 const { auth, JWT_SECRET } = require("./03_authentication")
 const app = express()
+dotenv.config()
 
 async function databaseConnections(req, res, next) {
-    await mongoose.connect("<MongoDB connection url here> database name: todo_app_database")
+    await mongoose.connect(process.env.MONGO_URL)
     next()
 }
 
@@ -17,21 +19,21 @@ app.post("/signup", async (req, res) => {
     const { email, password, name } = req.body;
 
     const findUser = await userModel.findOne({
-        email:email
+        email: email
     })
 
-    if(!findUser){
+    if (!findUser) {
 
-    await userModel.create({
-        email: email,
-        password: password,
-        name: name
-    })
+        await userModel.create({
+            email: email,
+            password: password,
+            name: name
+        })
 
-    res.json({
-        messege: "You are signed up"
-    })
-    }else{
+        res.json({
+            messege: "You are signed up"
+        })
+    } else {
         return res.status(403).send({
             messege: "An user already exists with the same email"
         });
@@ -62,9 +64,9 @@ app.post("/signin", async (req, res) => {
 });
 
 app.post("/todo", auth, async (req, res) => {
-    const {todo, done} = req.body;
+    const { todo, done } = req.body;
     const userID = req._id;
-    
+
     await todoModel.create({
         todo: todo,
         done: done,
@@ -75,8 +77,16 @@ app.post("/todo", auth, async (req, res) => {
     })
 })
 
-app.get("/my_todos", auth, async (req,res)=>{
+app.get("/my_todos", auth, async (req, res) => {
+
+    const demoUserId = req._id;
+    console.log(typeof demoUserId)
+    console.log( demoUserId)
+
+
     const userID = req._id.toString();
+    console.log(typeof userID)
+    console.log( userID)
     const allTodos = await todoModel.find({})
     const specificUserTodos = allTodos.filter(todo => todo.userId === userID)
 

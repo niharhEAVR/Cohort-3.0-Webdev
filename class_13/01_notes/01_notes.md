@@ -1,3 +1,10 @@
+### todays class slide
+```link
+https://petal-estimate-4e9.notion.site/Databases-and-MongoDb-1017dfd107358065a996cda5ed89682e
+```
+
+---
+
 NoSQL databases are a type of database that work differently from the usual, table-based SQL databases. Unlike SQL databases, which store data in rows and columns (like a spreadsheet), NoSQL databases are more flexible in how they store and organize information. 
 
 They’re especially good for handling large amounts of data or data that doesn’t fit well into a structured table format. Instead, they might use collections of documents (like files in folders), key-value pairs (like a dictionary), or graphs (which connect different pieces of data in a web).

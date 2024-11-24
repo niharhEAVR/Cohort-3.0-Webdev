@@ -1,3 +1,11 @@
+### this class slide link
+```link
+https://100x-b-mcdn.akamai.net.in/cohort-2-slides/Week_4.3.pdf
+```
+
+---
+
+
 While it's technically possible to allow a browser to directly interact with a database, using an intermediary like Express is highly beneficial and, in most cases, essential. Here’s why:
 
 ### 1. **Security**
