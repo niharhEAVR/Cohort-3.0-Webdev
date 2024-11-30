@@ -1,38 +1,7 @@
-import { useState } from 'react'
-import './App.css'
-
-function App() {
-  const [todo, setTodo] = useState([])
-
-  function addTodo() {
-    const newTodo = [...todo]
-    newTodo.push({
-      work: "do excercise"
-    })
-    setTodo(newTodo)
-  }
-
-  return (
-    <>
-      <button onClick={addTodo}>Add Todo</button>
-      {JSON.stringify(todo)}
-    </>
-  )
-}
-
-export default App
-
-// Mild version of a todo application
-// read 01_script.js to learn more
-
-
-
-// Harkirats code (try to understand whats going on here)
-/*
 import { useState } from "react";
 import "./App.css";
 
-export default function App() {
+function App() {
   const [todos, setTodos] = useState([
     {
       title: "Go to gym",
@@ -42,27 +11,39 @@ export default function App() {
   ]);
 
   function addTodo() {
-    let newArray = [];
-    for (let i = 0; i < todos.length; i++) {
-      newArray.push(todos[i]);
-    }
+    let newArray = [...todos];
+
     newArray.push({
       title: document.getElementById("title").value,
       description: document.getElementById("description").value,
-      done: true,
+      done: document.getElementById("doneYet").checked, // Use .checked for checkbox
     });
     setTodos(newArray);
   }
 
+  /*
+    setTodos([
+      ...todos,
+      {
+        title: document.getElementById("title").value,
+        description: document.getElementById("description").value,
+        done: document.getElementById("doneYet").checked, // Use .checked for checkbox
+      }
+    ])
+  */
+
+
   return (
     <div>
-      <input id="title" type="text" placeholder="Title"></input>
-      <input id="description" type="text" placeholder="Deescription"></input>
+      <input id="title" type="text" placeholder="Title" />
+      <input id="description" type="text" placeholder="Description" />
+      <input id="doneYet" type="checkbox" />
       <br />
       <button onClick={addTodo}>Add todo</button>
       <br />
-      {todos.map((todo) => (
+      {todos.map((todo, index) => (
         <Todo
+          key={index} // Add a unique key to each Todo component
           title={todo.title}
           description={todo.description}
           done={todo.done}
@@ -74,11 +55,14 @@ export default function App() {
 
 function Todo(props) {
   return (
-    <div>
-      <h1>{props.title}</h1>
-      <h2>{props.description}</h2>
-      <h1>{props.done ? "Task is done" : "Task is not done"}</h1>
-    </div>
+    <ul>
+      <li>
+        <p>{props.title}</p>
+        <p>{props.description}</p>
+        <p>{props.done ? "Task is done" : "Task is not done"}</p>
+      </li>
+    </ul>
   );
 }
- */
+
+export default App;
