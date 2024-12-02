@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "tsc -b && node ./dist/01_script.js"
+    "dev1": "tsc -b && node ./dist/01_script.js",
+    "dev2": "tsc -b && node ./dist/02_script.js"
   },
   "keywords": [],
   "author": "",

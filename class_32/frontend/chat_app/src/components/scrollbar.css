@@ -1,0 +1,27 @@
+/* Custom scrollbar styling */
+.custom-scrollbar::-webkit-scrollbar {
+    width: 10px; /* Narrow scrollbar */
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: gray; /* Darker track for a seamless dark look */
+    border-radius: 20px; /* Rounded corners for the track */
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #000000; /* Black color for the thumb */
+    border-radius: 10px; /* Rounded corners for the thumb */
+    border: 1px solid transparent; /* Optional: makes the thumb slightly inset */
+    background-clip: padding-box; /* Ensures the border doesn't overlap */
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #333333; /* Slightly lighter black for hover effect */
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+    display: none; /* Hide scrollbar for WebKit-based browsers */
+}
+
+
+/* i am actually copird thsi scrollbar from chatgpt, and after styling i hide it.*/

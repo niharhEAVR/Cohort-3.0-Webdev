@@ -1,89 +1,25 @@
-// import { WebSocketServer,WebSocket } from "ws";
-
-// const wss = new  WebSocketServer({port: 8080});
-
-// interface User{
-//     socket: WebSocket;
-//     room: string;
-// }
-
-// const allSockets: User[] = [];
-
-
-
-// wss.on("connection",  (socket)=>{
-    
-//     socket.on("message",(e)=>{
-//         const parsedMessege = JSON.parse(e as unknown as string)
-//         if(parsedMessege.type === "join"){
-//             allSockets.push({
-//                 socket,
-//                 room: parsedMessege.payload.roodId
-//             })
-//         }
-//         if(parsedMessege.type === "chat"){
-//             const currentUserRoom = allSockets.find(x => x.socket == socket);
-//             allSockets.forEach(sockets => {
-//                 // @ts-ignore
-//                 if(sockets.room == currentUserRoom){
-//                     sockets.socket.send(parsedMessege.payload.messege)
-//                 }
-//             })
-//         }
-
-//     })
-
-
-// })
-
-
-
-
-
-
-
-
 import { WebSocketServer, WebSocket } from "ws";
+const ws = new WebSocketServer({ port: 8080 })
 
-const wss = new WebSocketServer({ port: 8080 });
+let allSockets: WebSocket[] = [];
+// this array is created because i want to put all the socket connections in this array (socket actually means connection)
 
-interface User {
-    socket: WebSocket;
-    room: string;
-}
+ws.on("connection", function connection(socket) {
 
-let allSockets: User[] = [];
+    allSockets.push(socket);
 
-wss.on("connection", (socket) => {
-
-    socket.on("message", (message) => {
-        // @ts-ignore
-        const parsedMessage = JSON.parse(message);
-        if (parsedMessage.type == "join") {
-            console.log("user joined room " + parsedMessage.payload.roomId);
-            allSockets.push({
-                socket,
-                room: parsedMessage.payload.roomId
-            })
-        }
-
-        if (parsedMessage.type == "chat") {
-            console.log("user wants to chat");
-            // const currentUserRoom = allSockets.find((x) => x.socket == socket).room
-            let currentUserRoom = null;
-            for (let i = 0; i < allSockets.length; i++) {
-                if (allSockets[i].socket == socket) {
-                    currentUserRoom = allSockets[i].room
-                }
+    socket.on("message", (data) => {
+        allSockets.forEach(s => {
+            if (s !== socket ) {
+                s.send(data.toString());
             }
-
-            for (let i = 0; i < allSockets.length; i++) {
-                if (allSockets[i].room == currentUserRoom) {
-                    allSockets[i].socket.send(parsedMessage.payload.message)
-                }
-            }
-        }
-
+        })
+        // we are running a loop to all the connections in the allSocket array, so we can send message from one connections to others connections, like a backend chat application
     })
 
 })
+
+
+// use postman and https://hoppscotch.io/ for 2 connections
+
+// more explanation on the 01_notes.md in notes folder
