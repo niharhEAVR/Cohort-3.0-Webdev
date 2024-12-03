@@ -1,3 +1,5 @@
+// This code is interecting with our frontend
+
 /* 1st appraoch --- 
 
     let allSockets = {}; // read Maps and Records, and implement over here.
