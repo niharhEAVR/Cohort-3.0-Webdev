@@ -7,7 +7,6 @@ const { Client } = pg;
 
 const client = new Client(process.env.POSTGRES_URL)
 
-
 async function main() {
     try {
         await client.connect();
@@ -15,9 +14,6 @@ async function main() {
     } catch (err) {
         console.error("Failed to connect to the database", err);
     }
-
-
-
 
     const response = await client.query(
 
@@ -31,7 +27,7 @@ async function main() {
             created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
             FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE
         );`
-        
+
     )
 
 }

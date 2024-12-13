@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "tsc -b && node ./dist/my_code.js"
+    "dev1": "tsc -b && node ./dist/01_normal_sql.js",
+    "dev2": "tsc -b && node ./dist/02_my_code.js",
+    "dev3": "tsc -b && node ./dist/03_advanced_sql.js"
   },
   "keywords": [],
   "author": "",

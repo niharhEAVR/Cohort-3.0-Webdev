@@ -27,9 +27,14 @@ app.post("/signup", async (req, res) => {
     const { username, email, password } = req.body;
     
 
-    const insertQuery = `INSERT INTO users (username, email, password) VALUES (${username},${email},${password});`
+    const insertQuery = `
+        INSERT INTO users (username, email, password) 
+        VALUES ('${username}','${email}','${password}');
+    ` // In SQL, string values must be enclosed in single quotes (') instead of double quotes ("). Using double quotes is for identifiers like table or column names.
+
+    // but putting data like this is very bad or you can say that code will increase the risk of sql injection, (read 06_SQL_Injection.md)
     
-    await client.query(insertQuery);
+    const response = await client.query(insertQuery);
     res.status(201).json({ message: "User signed up successfully!" });
 
 })

@@ -1,7 +1,3 @@
-// MongoDB client is mongoose
-// and PostGres client is pg
-
-
 import pg from 'pg'
 const { Client } = pg
 
