@@ -4,7 +4,10 @@
   "main": "index.js",
   "scripts": {
     "dev1": "tsc -b && node ./dist/01_script.js",
-    "dev2": "tsc -b && node ./dist/02_script.js"
+    "dev2": "tsc -b && node ./dist/02_script.js",
+    "dev3": "tsc -b && node ./dist/03_script.js",
+    "dev4": "tsc -b && node ./dist/04_script.js",
+    "dev5": "tsc -b && node ./dist/05_script.js"
   },
   "keywords": [],
   "author": "",
