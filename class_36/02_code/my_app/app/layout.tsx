@@ -27,6 +27,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <div className="border-b p-4 text-blue-500">Navbar (This Navbar will render in all the endpoints)</div>
         {children}
       </body>
     </html>
