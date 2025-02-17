@@ -1,5 +1,4 @@
 let todos = [];
-let index = 0;
 
 function addTodo() {
     const title = document.querySelector("#input").value;

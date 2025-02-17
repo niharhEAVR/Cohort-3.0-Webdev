@@ -1,4 +1,4 @@
-// In my code there is so many bugsso feel free to read 02_todo_script.js
+// In my code there is so many bugsso feel free to read 02_notes.md
 let todos = [];
 let index = 0
 function addTodo() {
@@ -22,6 +22,7 @@ function removeTodo(index) {
 }
 
 function render(index) {
+    
 
     let element = document.createElement('h3')
 
