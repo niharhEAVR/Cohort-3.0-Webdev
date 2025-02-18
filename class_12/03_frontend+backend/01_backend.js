@@ -1,4 +1,3 @@
-const { log } = require('console');
 const express = require('express');
 const JWT = require('jsonwebtoken');
 const path = require('path');

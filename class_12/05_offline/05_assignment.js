@@ -44,7 +44,7 @@ function verifiedJWT(signature) {
     
     try {
         const responseJWT = jwt.verify(signature, JWT_Secret)
-        if(responseJWT.email === "cooldudecoolmail.com" ){
+        if(responseJWT.email === "cooldude@coolmail.com" ){
             return true
         }else{
             return false

@@ -21,7 +21,7 @@
                 b: document.getElementById('b').value
             });
             console.log(res)
-            console.log(res.data)
+            alert(res.data.ans)
         }
         sendRequest();
     </script>
@@ -29,4 +29,4 @@
 </html>
 
 
-<!-- So what actually we are doing here that we are running this file a different domain name (ports also counts) using (npx serve) and using cors middleware we are sending two values to our backend 01_script.js> express server,,, without cors we cant send values like this way if they dont have different domain names -->
+<!-- So what actually we are doing here that we are running this file a different domain name (ports also counts) using (npx serve) and using cors middleware we are sending two values to our backend 01_script.js> express server,,, without cors we cant send values like this way because they have different domain names (in our case the ports are different) -->

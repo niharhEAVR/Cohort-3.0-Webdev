@@ -40,12 +40,13 @@ app.post("/signin", (req, res) => {
 
     if (findUser) {
         const userToken = generateToken();
+        console.log(findUser)
         findUser.Token = userToken;
 
         res.json({
             Token: userToken
         });
-        console.log(users)
+        console.log(findUser)
     } else {
         return res.status(403).send({
             message: "Invalid username or password"
