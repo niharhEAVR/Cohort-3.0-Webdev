@@ -23,7 +23,7 @@ userRouter.get("/coursePreview", async (req, res) => {
 })
 
 
-userRouter.post("/courseBuy/:courseId", async (req, res) => {
+userRouter.put("/courseBuy/:courseId", async (req, res) => {
     const { courseId } = req.params
     const username = req.headers.username
 
