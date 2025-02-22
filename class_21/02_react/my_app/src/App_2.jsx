@@ -1,5 +1,5 @@
 // to solve the prop drilling we need context api
-import { useContext, useState } from 'react'
+import React,{ useContext, useState } from 'react'
 import './App.css'
 
 const bulbContext = React.createContext()

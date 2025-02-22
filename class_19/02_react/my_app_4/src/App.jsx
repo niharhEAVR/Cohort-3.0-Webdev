@@ -17,7 +17,7 @@ function App() {
 function Todo1() {
   const [todos, setTodos] = useState([
     { id: 1, text: 'Do exercise', completed: false },
-    { id: 2, text: 'Try to finish React today', completed: false }
+    { id: 2, text: 'Try to finish React today', completed: true }
   ]);
   return (
     <div>

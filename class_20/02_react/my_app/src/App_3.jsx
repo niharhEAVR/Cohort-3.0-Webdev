@@ -6,13 +6,14 @@ function App() {
     const intervalRef = useRef(null)
 
     function startTimer() {
-        if(intervalRef.current !== null) return
+        if(intervalRef.current !== null) return;
         intervalRef.current = setInterval (()=>{
             setfirst(c => c+1)
         },1000)
     }
     function stopTimer() {
         clearInterval(intervalRef.current)
+        intervalRef.current = null
     }
 
 

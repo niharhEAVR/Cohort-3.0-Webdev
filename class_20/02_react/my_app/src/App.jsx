@@ -21,7 +21,8 @@ function App() {
 function Layout() {
   return <div style={{ height: "60vh" }}>
     <Header />
-    <div style={{ height: "47vh", border: "2px solid white" }}>
+    <div style={{ height: "44vh", border: "2px solid white" }}>
+      routes page
       <Outlet />
     </div>
     <Footer />
@@ -31,7 +32,7 @@ function Layout() {
 function Header() {
   return <>
     <div style={{ border: "2px solid white", margin: "10px 0px" }}>
-
+      Header <br />
       <Link to="/">Allen</Link>
       |
       <Link to="/neet/online-coaching-class-11">Class 11</Link>
@@ -43,7 +44,10 @@ function Header() {
 
 function Footer() {
   return <>
-    <h1 style={{ border: "2px solid white" }}>Contact | Socials</h1>
+    <div style={{ border: "2px solid white", margin: "10px 0px" }}>
+      Footer
+      <h4>Contact | Socials</h4>
+    </div>
   </>
 }
 

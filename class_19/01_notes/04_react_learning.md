@@ -182,8 +182,7 @@ This approach keeps the code clean, modular, and reusable. By organizing compone
 <Header /> <Counter />
 ```
 
-### Q> 
-And where would i create this component?
+### Q> And where would i create this component?
 
 In a React project, you typically create new components in a dedicated folder within the project structure, often named `components`. Here’s how to organize and create these components.
 
