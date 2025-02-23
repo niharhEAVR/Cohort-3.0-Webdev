@@ -14,3 +14,6 @@ export const tempC = selector({
             newValue instanceof DefaultValue ? newValue : ((newValue * 9) / 5) + 32
         )
 })
+
+
+// to understand this read the 04_code_explanation.md

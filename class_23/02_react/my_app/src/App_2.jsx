@@ -20,6 +20,7 @@ function Counter() {
     
 
   return <div>
+    {count}
     <CurrentCount />
     <Increase />
     <Decrease />

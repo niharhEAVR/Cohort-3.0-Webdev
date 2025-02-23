@@ -13,7 +13,7 @@ function App() {
     <br />
     <button onClick={()=>{setCount(c=>c+1)}}>click</button>
     <br />
-      <h3>The Previous value type is: {typeof previousValue}</h3>
+      <h3>The Previous value type is: <i>{typeof previousValue}</i></h3>
       <h3>The Previous value is: {previousValue}</h3>
     </>
   )
