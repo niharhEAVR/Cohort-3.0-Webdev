@@ -7,9 +7,15 @@ let allSockets: WebSocket[] = [];
 ws.on("connection", function connection(socket) {
 
     allSockets.push(socket);
+    allSockets.forEach((s,index)=>{
+        console.log(`user ${index+1} connected`);  
+    })
+    console.log("\n");
+    
 
     socket.on("message", (data) => {
-        allSockets.forEach(s => {
+        allSockets.forEach((s,d) => {
+            
             if (s !== socket ) {
                 s.send(data.toString());
             }

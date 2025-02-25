@@ -44,6 +44,7 @@ let allSockets: User[] = [];
 ws.on("connection", function connection(socket) {
 
     // now we will not gonna put all the connection on the alsockets array, after connected if anyone tells that connect me to a room then we will push him 
+    socket.send("join a room!");
     socket.on("message", (data) => {
         // client will sent backend message like an object of string so the data will look like '{}', and we need to convert that data from string to object
         const parsedMessage = JSON.parse(data as unknown as string)
@@ -54,9 +55,7 @@ ws.on("connection", function connection(socket) {
             })
         }
         // when the client wants to join in the room then we will push him on the array
-
-
-
+        
         if (parsedMessage.type === "chat") {
             const currentUserRoom = allSockets.find(user => user.socket == socket)?.room
 
