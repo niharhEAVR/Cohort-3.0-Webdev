@@ -49,7 +49,7 @@ router.post("/signin", async (req, res) => {
 
         res.json({
             Token: userToken,
-            name: findUser.name
+            name: findUser.firstName
         });
     } else {
         return res.status(403).send({

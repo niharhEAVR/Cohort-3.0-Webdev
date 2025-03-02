@@ -1,4 +1,4 @@
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams,useNavigate } from 'react-router-dom';
 import axios from "axios";
 import { useState } from 'react';
 
@@ -7,6 +7,8 @@ export const SendMoney = () => {
     const id = searchParams.get("id");
     const name = searchParams.get("name");
     const [amount, setAmount] = useState(0);
+    const navigate = useNavigate();
+    
 
     return <div class="flex justify-center h-screen bg-gray-100">
         <div className="h-full flex flex-col justify-center">
@@ -33,7 +35,7 @@ export const SendMoney = () => {
                     </label>
                     <input
                         onChange={(e) => {
-                            setAmount(e.target.value);
+                            setAmount(parseInt(e.target.value));
                         }}
                         type="number"
                         class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
@@ -41,15 +43,17 @@ export const SendMoney = () => {
                         placeholder="Enter amount"
                     />
                     </div>
-                    <button onClick={() => {
-                        axios.post("http://localhost:3000/api/v1/account/transfer", {
+                    <button onClick={async () => {
+                        const response = await axios.post("http://localhost:3000/api/v1/account/transfer", {
                             to: id,
                             amount
                         }, {
                             headers: {
-                                Authorization: "Bearer " + localStorage.getItem("token")
+                                "token":localStorage.getItem("token")
                             }
                         })
+                        alert(response.data.message)
+                        navigate("/dashboard")
                     }} class="justify-center rounded-md text-sm font-medium ring-offset-background transition-colors h-10 px-4 py-2 w-full bg-green-500 text-white">
                         Initiate Transfer
                     </button>

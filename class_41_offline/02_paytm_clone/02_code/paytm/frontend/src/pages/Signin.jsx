@@ -21,7 +21,7 @@ export const Signin = () => {
         <SubHeading label={"Enter your credentials to access your account"} />
         <InputBox onChange={e => {
           setUsername(e.target.value);
-        }} placeholder="OscarWilde@gmail.com" label={"Email"} />
+        }} placeholder="OscarWilde" label={"Username"} />
         <InputBox onChange={(e) => {
           setPassword(e.target.value)
         }} placeholder="OscarWilde#69" label={"Password"} />
@@ -32,6 +32,7 @@ export const Signin = () => {
               password
             });
             localStorage.setItem("token", response.data.Token)
+            localStorage.setItem("name", response.data.name)
             navigate("/dashboard")
           }} label={"Sign in"} />
         </div>

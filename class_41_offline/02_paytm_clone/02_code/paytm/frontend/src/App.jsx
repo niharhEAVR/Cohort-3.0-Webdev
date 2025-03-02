@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes, Link, Outlet } from "react-router-dom";
+import { BrowserRouter, Route, Routes, Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 import { Signup } from "./pages/Signup";
 import { Signin } from "./pages/Signin";
 import { Dashboard } from "./pages/Dashboard";
@@ -6,7 +6,6 @@ import { SendMoney } from "./pages/SendMoney";
 
 function App() {
   return (
-    <>
     <div className="bg-gray-400 h-full w-full">
       <BrowserRouter>
         <Routes>
@@ -18,21 +17,37 @@ function App() {
           </Route>
         </Routes>
       </BrowserRouter>
-      </div>
-    </>
-  )
+    </div>
+  );
 }
 
 function Layout() {
-  return <div>
-    <Link to="/">Home Page</Link>
-    |
-    <Link to="/signup">Signup</Link>
-    |
-    <Link to="/signin">Signin</Link>
-    <Outlet />
-  </div>
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const isDashboardRoute = ["/dashboard", "/send"].includes(location.pathname);
+
+  const handleLogout = () => {
+    localStorage.removeItem("token"); 
+    localStorage.removeItem("name"); 
+    navigate("/");
+  };
+
+  return (
+    <div>
+      {!isDashboardRoute ? (
+        <div className="text-blue-800 font-bold">
+          <Link to="/">Home Page</Link>{" "} |
+          {" "} <Link to="/signup">Signup</Link> | <Link to="/signin">Signin</Link>
+        </div>
+      ) : (
+        <button onClick={handleLogout} className="text-red-800 underline font-bold">
+          Logout
+        </button>
+      )}
+      <Outlet />
+    </div>
+  );
 }
 
-
-export default App
+export default App;
