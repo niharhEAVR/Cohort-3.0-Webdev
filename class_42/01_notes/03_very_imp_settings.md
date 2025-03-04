@@ -1,12 +1,6 @@
 ## if you dont understand how to setup the monorepo then rewatch the class > 22.1 | End to End - Project #1 - Excalidraw > from 00:00 to 27:10 minutes
 
 
-
-
-Here’s your text rewritten properly while keeping it clear and structured:  
-
----
-
 ### **Setting Up TypeScript in a PNPM Turbo Monorepo**  
 
 In our PNPM-based monorepo, we need to use TypeScript for both `http-backend` and `ws-backend`.  
@@ -17,11 +11,9 @@ First, navigate to the `http-backend` directory and set up the package:
 ```bash
 cd apps/http-backend/
 
-pnpm init 
+pnpm init  # to initilize the package.json  
 
-pnpm add -D typescript
-
-npx tsc --init
+npx tsc --init   # to initialize the tsconfig.json
 ```
 This initializes a `tsconfig.json` file.  
 
@@ -67,9 +59,6 @@ This ensures that all dependencies, including the shared TypeScript config, are 
 ---
 
 ### **5️⃣ Repeat the Same Steps for `ws-backend`**  
-Follow the exact same process for `ws-backend`:  
-- Install TypeScript  
-- Extend the shared `tsconfig.json`  
+Follow the exact same process for `ws-backend`:   
 - Add the dependency in `package.json`  
-
-Now, both `http-backend` and `ws-backend` share the same TypeScript configuration, making the project more maintainable and scalable. 🚀
+- Extend the shared `tsconfig.json`  
