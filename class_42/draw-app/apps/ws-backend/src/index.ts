@@ -26,7 +26,7 @@ function checkUser(token: string): string | null {
     }
 
     return decoded.userId;
-  } catch(e) {
+  } catch (e) {
     return null;
   }
 }
@@ -56,55 +56,64 @@ wss.on('connection', function connection(ws, request) {
   })
 
 
-  
-  // read the 06_ws_backend.md and start the class from 1:30:00
-  // ws.on('message', async function message(data) {
-  //   let parsedData;
-  //   if (typeof data !== "string") {
-  //     parsedData = JSON.parse(data.toString());
-  //   } else {
-  //     parsedData = JSON.parse(data); // {type: "join-room", roomId: 1}
-  //   }
 
-  //   if (parsedData.type === "join_room") {
-  //     const user = users.find(x => x.ws === ws);
-  //     user?.rooms.push(parsedData.roomId);
-  //   }
+  ws.on('message', async function message(data) {
+    let parsedData;
+    if (typeof data !== "string") {
+      parsedData = JSON.parse(data.toString());
+    } else {
+      parsedData = JSON.parse(data); // {type: "join-room", roomId: 1}
+    }
 
-  //   if (parsedData.type === "leave_room") {
-  //     const user = users.find(x => x.ws === ws);
-  //     if (!user) {
-  //       return;
-  //     }
-  //     user.rooms = user?.rooms.filter(x => x === parsedData.room);
-  //   }
+    if (parsedData.type === "join_room") {
+      const user = users.find(x => x.ws === ws);
+      user?.rooms.push(parsedData.roomId);
+      // {  
+      //    userId:"c2714a10-27dd-44f6-8bee-4550c77b823d", 
+      //    rooms:[{roomId:1}],
+      //    ws:websocketConnection
+      // }
+    }
 
-  //   console.log("message received")
-  //   console.log(parsedData);
+    if (parsedData.type === "leave_room") {
+      const user = users.find(x => x.ws === ws);
+      if (!user) {
+        return;
+      }
+      user.rooms = user?.rooms.filter(x => x === parsedData.room);
+      // {  
+      //    userId:"c2714a10-27dd-44f6-8bee-4550c77b823d", 
+      //    rooms:[],
+      //    ws:websocketConnection
+      // }
+    }
 
-  //   if (parsedData.type === "chat") {
-  //     const roomId = parsedData.roomId;
-  //     const message = parsedData.message;
+    console.log("message received")
+    console.log(parsedData);
 
-  //     await prismaClient.chat.create({
-  //       data: {
-  //         roomId: Number(roomId),
-  //         message,
-  //         userId
-  //       }
-  //     });
+    if (parsedData.type === "chat") {
+      const roomId = parsedData.roomId;
+      const message = parsedData.message;
 
-  //     users.forEach(user => {
-  //       if (user.rooms.includes(roomId)) {
-  //         user.ws.send(JSON.stringify({
-  //           type: "chat",
-  //           message: message,
-  //           roomId
-  //         }))
-  //       }
-  //     })
-  //   }
+      await prismaClient.chat.create({
+        data: {
+          roomId: Number(roomId),
+          message,
+          userId
+        }
+      });
 
-  // });
+      users.forEach(user => {
+        if (user.rooms.includes(roomId)) {
+          user.ws.send(JSON.stringify({
+            type: "chat",
+            message: message,
+            roomId
+          }))
+        }
+      })
+    }
+
+  });
 
 });

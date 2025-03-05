@@ -457,3 +457,218 @@ const users: User[] = [{
 3️⃣ **Tracking rooms per user** makes it efficient to send messages to only the right people.  
 
 ✅ This design **keeps things simple, fast, and scalable** without unnecessary complexity! 🚀
+
+
+---
+---
+---
+
+
+
+Great question! Let's break it down in detail.  
+
+---
+
+# **🟢 State Management in the Backend**
+State management in a backend refers to how a server **stores and manages data** between different client requests.  
+
+There are two types:  
+1. **Stateless HTTP Backends** (Most REST APIs)  
+2. **Stateful WebSocket Backends** (Real-time connections)  
+
+---
+
+## **🔹 Stateless HTTP Backends (REST APIs)**
+### **1️⃣ What Does Stateless Mean?**
+- **Each request is independent** and does not rely on past requests.  
+- The server does **not** store any client session data.  
+- The client must send **all necessary information** (like authentication tokens) with each request.  
+
+### **2️⃣ How Does It Work?**
+- The client sends a request to the server → The server processes it → The server responds.  
+- The server does **not** remember anything after sending the response.  
+
+💡 **Example (REST API Call)**:
+```http
+GET /user/profile
+Authorization: Bearer <JWT_TOKEN>
+```
+- The server **validates the token** and returns the user profile.  
+- If the client makes another request later, they **must send the token again**.  
+
+### **3️⃣ Why Are HTTP APIs Stateless?**
+- **Scalability** → Since no session is stored, any server can handle a request.  
+- **Reliability** → A crashed server won’t affect ongoing user sessions.  
+- **Performance** → No extra memory is used to store session data.  
+
+### **4️⃣ Where Is State Stored If the Server Is Stateless?**
+- **On the Client:** The frontend stores data in local storage, cookies, or session storage.  
+- **In a Database:** The server stores long-term data (like users, orders, etc.).  
+
+---
+
+## **🔹 Stateful WebSocket Backends**
+### **1️⃣ What Does Stateful Mean?**
+- **The server maintains a persistent connection** with the client.  
+- The server **remembers information** about connected users (state).  
+- Messages can be sent **at any time** without the client initiating a request.  
+
+### **2️⃣ How Does It Work?**
+- A WebSocket connection stays **open** between the client and server.  
+- The server **remembers the client** (e.g., their rooms, online status).  
+- The server can **push** messages to the client without waiting for a request.  
+
+💡 **Example (WebSocket Chat App)**:
+```ts
+const ws = new WebSocket("ws://server.com?token=123");
+ws.send(JSON.stringify({ type: "join_room", roomId: 1 }));
+```
+- The server **remembers** which user joined which room.  
+- When a message is sent to the room, **only users in that room receive it**.  
+
+### **3️⃣ Why Are WebSocket Servers Stateful?**
+- **Real-time communication** → Users expect live updates.  
+- **Efficient for messaging apps, live games, stock prices, etc.**  
+- **Needs user session tracking** → The server needs to know which users are connected.  
+
+### **4️⃣ Where Is State Stored?**
+- **In Memory (RAM):** Active users, chat rooms, online status, etc.  
+- **In a Database:** Messages and persistent data (e.g., chat history).  
+
+---
+
+## **🛠️ Comparing Stateless vs. Stateful Backends**
+
+| Feature             | **Stateless (HTTP API)** | **Stateful (WebSockets)** |
+|--------------------|------------------------|---------------------------|
+| **Connection Type** | Short-lived (per request) | Persistent (always connected) |
+| **Server Memory Usage** | Low | Higher (stores active users, rooms, etc.) |
+| **Scalability** | Easier | Harder (sticky sessions needed) |
+| **Client Initiates?** | Yes | No (server can send updates anytime) |
+| **Best For?** | REST APIs, microservices | Chat apps, multiplayer games, live updates |
+
+---
+
+## **💡 Why Do Many Apps Use Both?**
+- **Authentication (Stateless HTTP API)**
+  - User logs in using a stateless API (sends a JWT token).  
+- **Chat System (Stateful WebSocket Server)**
+  - The frontend **opens a WebSocket connection** after login.  
+  - The WebSocket server **remembers the user’s connection**.  
+  - Messages are sent/received in real time.  
+
+This **hybrid approach** is common in modern apps like WhatsApp, Discord, and Slack. 🚀
+
+Yes! In your **WebSocket server**, the state is stored in the `users` array:  
+
+```ts
+const users: User[] = [];
+```
+This array **keeps track of active users** who have established a WebSocket connection.  
+
+---
+
+## **🔹 How Is State Managed in the `users` Array?**
+1️⃣ **When a user connects** → They are added to `users`  
+2️⃣ **When a user joins a room** → The room ID is added to their `rooms` list  
+3️⃣ **When a user leaves a room** → The room ID is removed from their `rooms` list  
+4️⃣ **When a user disconnects** → They are removed from `users`  
+
+---
+
+## **🔹 Where Exactly Is Each User's State Stored?**
+Each user’s state is stored as an object inside the `users` array:
+```ts
+interface User {
+  ws: WebSocket,  // Their WebSocket connection
+  rooms: string[],  // Rooms they have joined
+  userId: string   // Their unique ID
+}
+```
+
+### **🔸 When a User Connects:**
+When a user establishes a WebSocket connection, we add them to the array:
+```ts
+users.push({
+  userId,    // Store their user ID
+  rooms: [],  // Initially, they are not in any rooms
+  ws         // Store their WebSocket connection
+});
+```
+**➡ This means the server now remembers that the user is online.**  
+
+---
+
+### **🔸 When a User Joins a Room:**
+If they send a message like:
+```json
+{ "type": "join_room", "roomId": 1 }
+```
+We update their entry in `users`:
+```ts
+const user = users.find(x => x.ws === ws);
+user?.rooms.push(parsedData.roomId);
+```
+**➡ Now, the server remembers that this user is in room `1`.**  
+
+---
+
+### **🔸 When a User Sends a Message:**
+If they send a chat message:
+```json
+{ "type": "chat", "roomId": 1, "message": "Hello World!" }
+```
+1. **Save it in the database** (long-term storage)
+```ts
+await prismaClient.chat.create({
+  data: {
+    roomId: Number(roomId),
+    message,
+    userId
+  }
+});
+```
+2. **Send it to all users in that room**
+```ts
+users.forEach(user => {
+  if (user.rooms.includes(roomId)) {
+    user.ws.send(JSON.stringify({ type: "chat", message, roomId }));
+  }
+});
+```
+**➡ Now, only users in room `1` will receive this message.**  
+
+---
+
+### **🔸 When a User Leaves a Room:**
+If they send:
+```json
+{ "type": "leave_room", "roomId": 1 }
+```
+We remove the room from their list:
+```ts
+user.rooms = user.rooms.filter(x => x !== parsedData.roomId);
+```
+**➡ The server stops sending them messages from this room.**  
+
+---
+
+### **🔸 When a User Disconnects:**
+When a WebSocket connection closes, they should be **removed from `users`** to free up memory.  
+
+---
+
+## **🔹 Why Store State in an Array Instead of a Database?**
+- **Fast lookup**: Checking `users` is faster than querying a database.  
+- **Only stores active users**: Users who disconnect are removed automatically.  
+- **Temporary state**: WebSocket state does not need to be permanently saved.  
+
+---
+
+## **🛠 Summary**
+- **State is stored in the `users` array** (in RAM).  
+- **Each user has a WebSocket connection, userId, and room list.**  
+- **This allows real-time chat features like joining rooms & sending messages.**  
+- **When they disconnect, their state is removed from the array.**  
+
+This is why **WebSockets are stateful**—the server keeps track of user sessions in memory. 🚀
