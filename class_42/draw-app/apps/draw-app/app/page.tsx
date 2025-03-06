@@ -11,6 +11,9 @@ export default function Home() {
         <Link href="/signup">
           <button className="bg-white rounded p-2 text-2xl font-semibold text-gray-700 text-center mb-6">Signup</button>
         </Link>
+        <Link href="/canvas/1">
+          <button className="bg-pink-300 rounded p-2 text-2xl font-semibold text-gray-900 text-center mb-6">Goto Canvas</button>
+        </Link>
       </div>
     </>
   );

@@ -129,6 +129,29 @@ app.get("/chats/:roomId", async (req, res) => {
     
 })
 
+app.get("/shapes/:roomId", async (req, res) => {
+    try {
+        const roomId = Number(req.params.roomId);
+        console.log(req.params.roomId);
+        const shapes = await prismaClient.shapes.findMany({
+            where: {
+                roomId: roomId
+            }
+        });
+        console.log(shapes);
+        
+        res.json({
+            shapes
+        })
+    } catch(e) {
+        console.log(e);
+        res.json({
+            messages: []
+        })
+    }
+    
+})
+
 app.get("/room/:slug", async (req, res) => {
     const slug = req.params.slug;
     const room = await prismaClient.room.findFirst({

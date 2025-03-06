@@ -114,6 +114,31 @@ wss.on('connection', function connection(ws, request) {
       })
     }
 
+    if(parsedData.type === "shape"){
+      const roomId = parsedData.roomId;
+      const shape = parsedData.shape;
+      console.log(parsedData);
+      
+      await prismaClient.shapes.create({
+        data: {
+          roomId: Number(roomId),
+          shape:  String(shape),
+          userId
+        }
+      });
+
+      users.forEach(user => {
+        if (user.rooms.includes(roomId)) {
+          user.ws.send(JSON.stringify({
+            type: "shape",
+            shape: shape,
+            roomId
+          }))
+        }
+      })
+    }
+
+
   });
 
 });

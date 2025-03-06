@@ -7,3 +7,18 @@ https://lovable.dev/
 ```link
 https://bolt.new/
 ```
+
+
+---
+
+
+## There are many librarys for building shapes in our draw-app, you can pick it up from there:
+
+
+```link
+https://p5js.org/
+```
+
+```link
+https://fabricjs.com/
+```
