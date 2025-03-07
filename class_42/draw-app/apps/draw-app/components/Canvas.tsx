@@ -1,36 +1,73 @@
-import { useEffect, useRef } from "react";
-import { initDraw, removeDrawListeners } from "@/draw";
 
-export function Canvas({ roomId, socket }: { roomId: string; socket: WebSocket }) {
+import { useEffect, useRef, useState } from "react";
+import { initDraw, removeDrawListeners } from "@/draw";
+import { Pencil } from "lucide-react";
+import { Button } from "./Button";
+import { Game } from "@/draw/Game";
+
+export type Tool = "circle" | "rect" | "pencil";
+
+export function Canvas({ roomId, socket, width, height }: { roomId: string; socket: WebSocket, width: number | undefined, height: number | undefined }) {
+
     const canvasRef = useRef<HTMLCanvasElement>(null);
 
+    const [activeTool, setActiveTool] = useState<string | null>(null);
+    const [selectedTool, setSelectedTool] = useState<Tool>("circle");
+
+
+    const [game, setGame] = useState<Game>();
+
     useEffect(() => {
-        const canvas = canvasRef.current;
-        if (!canvas) return;
+        game?.setTool(selectedTool);
+    }, [selectedTool, game]);
 
-        initDraw(canvas, roomId, socket);
 
-        return () => {
-            removeDrawListeners(canvas);
-        };
-    }, [roomId, socket]); // Dependencies added
 
-    return (
-        <div className="flex justify-center items-center flex-col h-screen bg-gray-900">
-            <div className="flex gap-x-5 mt-5">
-                <button className="rounded bg-white text-black p-2">Text</button>
-                <button className="rounded bg-white text-black p-2">Circle</button>
-                <button className="rounded bg-white text-black p-2">Pencil</button>
-                <button className="rounded bg-white text-black p-2">Rectangle</button>
-            </div>
-            <div className="flex justify-center items-center h-screen bg-gray-900">
-                <canvas
-                    ref={canvasRef}
-                    className="border-2 border-gray-700 rounded-lg shadow-lg"
-                    width={900}
-                    height={700}
-                />
-            </div>
-        </div>
+    useEffect(() => {
+        if (canvasRef.current) {
+            const g = new Game(canvasRef.current, roomId, socket);
+            setGame(g);
+
+            return () => {
+                g.destroy();
+            }
+        }
+    }, [canvasRef]);
+
+
+    return (<>
+        <canvas
+            ref={canvasRef}
+            className="border-2 border-gray-700 rounded-lg shadow-lg"
+            width={width}
+            height={height}
+        />
+        <ButtonBar activeTool={activeTool} setActiveTool={setActiveTool} />
+    </>
     );
+}
+
+
+function ButtonBar({ activeTool, setActiveTool }: {
+    activeTool: string | null,
+    setActiveTool: React.Dispatch<React.SetStateAction<string | null>>
+}) {
+
+    return (<>
+        <div className="fixed top-4 left-4 flex gap-2 text-xl">
+            {["Text", "Circle", "Rectangle"].map((tool) => (
+                <button
+                    key={tool}
+                    className={`rounded-4xl p-2 ${activeTool === tool ? "bg-green-300 text-black" : "bg-white text-black hover:bg-gray-300"
+                        }`}
+                    onClick={() => setActiveTool((prev) => (prev === tool ? null : tool))}
+                >{tool}</button>
+            ))}
+        </div>
+        <div className="fixed bottom-4 right-4 text-xl">
+            <Button onClick={() => {
+                setActiveTool((prev) => (prev === "pencil" ? null : "pencil"))
+            }} activated={activeTool === "pencil"} icon={<Pencil />} />
+        </div>
+    </>)
 }

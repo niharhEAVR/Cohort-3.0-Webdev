@@ -114,15 +114,15 @@ wss.on('connection', function connection(ws, request) {
       })
     }
 
-    if(parsedData.type === "shape"){
+    if (parsedData.type === "shape") {
       const roomId = parsedData.roomId;
       const shape = parsedData.shape;
       console.log(parsedData);
-      
+
       await prismaClient.shapes.create({
         data: {
           roomId: Number(roomId),
-          shape:  String(shape),
+          shape: String(shape),
           userId
         }
       });
@@ -138,6 +138,25 @@ wss.on('connection', function connection(ws, request) {
       })
     }
 
+
+    if (parsedData.type === "clearCanvas") {
+      const roomId = parsedData.roomId;
+
+      await prismaClient.shapes.deleteMany({
+        where: {
+          roomId: Number(roomId)
+        }
+      });
+
+      users.forEach(user => {
+        if (user.rooms.includes(roomId)) {
+          user.ws.send(JSON.stringify({
+            type: "clearCanvas",
+            roomId
+          }))
+        }
+      })
+    }
 
   });
 
