@@ -1,3 +1,11 @@
+### Todays class slide link:
+
+```link
+https://projects.100xdevs.com/tracks/http-intro/Intro-to-HTTP-1
+```
+
+---
+
 The **HTTP (Hypertext Transfer Protocol)** is a protocol used for communication between web clients (like web browsers) and web servers on the internet. It defines the rules and structure for how data is requested and delivered over the World Wide Web. HTTP is foundational to the web, enabling the retrieval of web pages, images, videos, and other resources.
 
 ### Key Concepts in HTTP

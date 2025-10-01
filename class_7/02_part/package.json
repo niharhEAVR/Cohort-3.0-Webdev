@@ -1,15 +1,12 @@
 {
-  "name": "02_part",
+  "name": "01_part",
   "version": "1.0.0",
-  "main": "index.mjs",
+  "main": "index.js",
   "scripts": {
-    "test": "index.mjs"
+    "test": "node index.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
-  "dependencies": {
-    "chalk": "^5.3.0"
-  }
+  "description": ""
 }

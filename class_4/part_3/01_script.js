@@ -12,7 +12,7 @@ function readTheFile(resolve) {
     })
 }
 
-function readFile(fileName) {
+function readFile() {
     console.log("new promise called or created\n")
     return new Promise(readTheFile); // it is not necessary to give (resolve, and reject) parameters evertime, instead we can pass a callback function which will choose either its resolved or rejected
 }

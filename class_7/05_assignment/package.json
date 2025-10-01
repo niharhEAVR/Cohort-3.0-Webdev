@@ -1,0 +1,17 @@
+{
+  "name": "05_assignment",
+  "version": "1.0.0",
+  "main": "cli_todo_list.js",
+  "scripts": {
+    "demoAdd": "node ./cli_todo_list.js add 'nombre'",
+    "demoDone": "node ./cli_todo_list.js markDone 0",
+    "demoDel": "node ./cli_todo_list.js delete 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "commander": "^14.0.1"
+  }
+}

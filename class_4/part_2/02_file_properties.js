@@ -3,10 +3,10 @@
 const fs = require("fs");
 
 function cleanFile(initialFilePath, trimmedFilePath) {
-    return new Promise( resolve => {
-        fs.readFile(initialFilePath, "utf-8",  (err, data) =>{
+    return new Promise(resolve => {
+        fs.readFile(initialFilePath, "utf-8", (err, data) => {
             data = data.trim();
-            fs.writeFile(trimmedFilePath, data,  ()=> {
+            fs.writeFile(trimmedFilePath, data, () => {
                 resolve();
             });
         });

@@ -19,3 +19,7 @@ file.readFile("01_after_trim.txt", "utf-8", (err, content) => {
         })
     })
 })
+
+
+// this code actually doing:
+// first it clears the content inside a txt file then takes a different content from a diff txt file, trims it and writes in in the first txt file
