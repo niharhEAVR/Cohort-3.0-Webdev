@@ -1,4 +1,3 @@
-// cd class_8\02_offline\03_get_post_put
 const express = require('express')
 const app = express()
 
@@ -40,7 +39,7 @@ app.put('/', function (req, res) {
 
     // so for put method => just go to the postman and then selects method put and click on send
     // no need to write or change anything on the body
-    // because for the pu method we have written all the code here and you have to just access it
+    // because for the put method we have written all the code here and you have to just access it
 })
 
 app.listen(3000, () => {

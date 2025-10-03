@@ -1,8 +1,7 @@
-// cd class_8\02_offline\02_get_post_http
 const express = require('express')
 const app = express()
 
-app.use(express.json());
+app.use(express.json()); // for taking input from the body we have to write this express.json() everytime to successfully get the input from the post or put method
 
 const users = [{
     name: "william",
@@ -27,7 +26,6 @@ app.get('/', function (req, res) {
     })
 
 })
-// query parameter is used to input (using the URL) some data in get method in http
 
 
 // Now we will input data in body using post method

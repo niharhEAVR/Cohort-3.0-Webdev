@@ -1,4 +1,4 @@
-## 1st assignment is done the 2nd and 3rd assignment will be starting from the week-4 offline >  Middleware at 29:43 
+## 1st & 2nd assignment is done the 3rd assignment is left adn it will be starting from the week-4 offline >  Middleware at 29:43 
 
 ### try to solve the assignments by your own then see the solution
 

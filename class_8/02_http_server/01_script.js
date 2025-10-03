@@ -1,4 +1,4 @@
-// to change directory => cd .\class_8\01_our_own_created_HTTP_server
+// to change directory => cd .\class_8\02_http_server
 
 const express = require('express')
 const app = express()

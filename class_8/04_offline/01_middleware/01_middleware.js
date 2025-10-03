@@ -2,12 +2,12 @@ const express = require('express')
 const app = express()
 
 function middleware(req, res, next) {
-    let age = req.query.age
+    let age = req.query.age // http://localhost:3000/ride1?age=7
     if (age >= 14) {
         next();
     } else {
         res.json({
-            bad_request: "you age is less than minimum criteria"
+            bad_request: "Your age is less than the minimum criteria"
         })
     }
 }

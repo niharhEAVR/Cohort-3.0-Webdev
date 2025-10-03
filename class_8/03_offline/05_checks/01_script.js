@@ -1,4 +1,3 @@
-// cd .\class_8\02_offline\05_checks\
 const express = require('express')
 const app = express()
 
@@ -12,6 +11,26 @@ let users = [{
     }, {
         id: "Right-kidney",
         healthy: true
+    }]
+},
+{
+    name: "cooldude",
+    kidneys: [{
+        id: "left-kidney",
+        healthy: false
+    }, {
+        id: "Right-kidney",
+        healthy: true
+    }]
+},
+{
+    name: "noname",
+    kidneys: [{
+        id: "left-kidney",
+        healthy: false
+    }, {
+        id: "Right-kidney",
+        healthy: false
     }]
 }]
 
@@ -31,20 +50,22 @@ app.post('/', function (req, res) {
     res.send("Done")
 })
 
-app.delete('/', function (req, res) {
-    if(isThereAtleastOneUnhealthyKidney()){
-        users[0].kidneys = users[0].kidneys.filter(kidneys => kidneys.healthy === true)
+app.delete('/:index', function (req, res) {
+    let userNo = parseInt(req.params.index);
+
+    if (isThereAtleastOneUnhealthyKidney(userNo)) {
+        users[userNo].kidneys = users[userNo].kidneys.filter(kidney => kidney.healthy === true)
         res.send("Done")
-    }else{
+    } else {
         res.status(411).json({
             bad_request: "You have no unhealthy kidney"
         })
     }
 })
 
-function isThereAtleastOneUnhealthyKidney() {
+function isThereAtleastOneUnhealthyKidney(i) {
     let atleastOneUnhealthyKidney = false
-    if(!(users[0].kidneys[0].healthy && users[0].kidneys[1].healthy)){
+    if (!(users[i].kidneys[0].healthy && users[i].kidneys[1].healthy)) {
         atleastOneUnhealthyKidney = true
     }
     return atleastOneUnhealthyKidney

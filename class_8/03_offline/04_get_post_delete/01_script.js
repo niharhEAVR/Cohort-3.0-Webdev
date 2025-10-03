@@ -1,4 +1,3 @@
-// cd class_8\02_offline\04_get_post_delete
 const express = require('express')
 const app = express()
 
