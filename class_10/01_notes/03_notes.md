@@ -1,75 +1,58 @@
-**CORS** (Cross-Origin Resource Sharing) is a security feature implemented in web browsers that restricts web pages from making requests to a different domain than the one that served the web page. It’s a way to control access between different origins, which is critical for web security.
+In your code, `app.use(express.json())` is a middleware that enables your Express app to parse incoming request bodies formatted as JSON. Here’s how it works:
 
-Here’s a breakdown:
+1. **Purpose**: When a client sends a POST request with JSON data in the request body, this middleware parses that JSON data and makes it available on `req.body`. Without `express.json()`, `req.body` would be `undefined` for JSON payloads.
 
-1. **Same-Origin Policy**: By default, browsers enforce the *Same-Origin Policy*, meaning that a web page can only make requests to the same domain (origin) it came from. This restriction prevents malicious websites from accessing your resources without permission.
+2. **Use Case**: This is commonly used when building APIs that handle JSON data, as it’s a standard format for web APIs.
 
-2. **Cross-Origin Resource Sharing (CORS)**: CORS provides a secure way to allow specific cross-origin requests. If a server wants to accept requests from a different origin, it can specify allowed origins through CORS headers. The most common headers include:
-   - `Access-Control-Allow-Origin`: Specifies which origins are allowed (e.g., `*` for all, or a specific domain).
-   - `Access-Control-Allow-Methods`: Defines allowed HTTP methods (e.g., `GET`, `POST`, `PUT`).
-   - `Access-Control-Allow-Headers`: Specifies headers that can be used in requests.
+### Example Flow in Your Code
+In your `POST /special` route:
+- When a client sends a request with `Content-Type: application/json` and a JSON body (e.g., `{ "name": "Alice" }`), `express.json()` parses the JSON, and `req.body.name` becomes `"Alice"`.
+- You then log `name` and send it back in the response.
 
-3. **Preflight Requests**: For certain requests (like `PUT`, `DELETE`, or custom headers), the browser performs a "preflight" request using the `OPTIONS` method. This preflight checks if the server permits the actual request before sending it.
-
-### Example in Express
-To enable CORS in an Express app, you can use the `cors` middleware:
-
-```javascript
-const express = require("express");
-const cors = require("cors");
-const app = express();
-
-app.use(cors()); // Enable CORS for all origins
-
-app.get('/data', (req, res) => {
-    res.send("Hello from CORS-enabled server!");
-});
-
-app.listen(3000, () => {
-    console.log("Server running on http://localhost:3000");
-});
-```
-
-You can also configure `cors` to allow specific origins or methods:
-
-```javascript
-app.use(cors({
-    origin: "http://example.com", // Allow only this origin
-    methods: ["GET", "POST"],      // Allow only these methods
-}));
-```
-
-Using CORS helps create secure interactions between different domains, enabling controlled access to resources on the server from other origins.
+If you removed `express.json()`, `req.body` would be undefined, and you wouldn’t be able to access the JSON data.
 
 ---
 
+# Commonly used middlewares
 
-A real-world example of CORS is when a JavaScript frontend hosted on one domain (e.g., `https://example-client.com`) tries to make requests to an API hosted on another domain (e.g., `https://example-api.com`). Without proper CORS configuration, the browser will block this request due to security restrictions.
+Through your `journey of writing express servers` , you’ll find some commonly available (on npm) middlewares that you might want to use
 
-### Scenario: Building a Weather App
+### 1. express.json
 
-Imagine you're building a weather app that displays data from a third-party weather API, but your frontend and backend are on different origins:
+The `express.json()` middleware is a built-in middleware function in Express.js used to parse incoming request bodies that are formatted as JSON. This middleware is essential for handling JSON payloads sent by clients in POST or PUT requests.
 
-1. **Frontend**: Hosted on `https://weatherapp.com`.
-2. **Backend API**: The weather data API is hosted on `https://api.weatherdata.com`.
+```jsx
+const express = require('express');
+const app = express();
 
-When the user visits your weather app and your frontend JavaScript makes a request to `https://api.weatherdata.com` to fetch weather data, the following happens:
+// Use express.json() middleware to parse JSON bodies
+app.use(express.json());
 
-1. The browser sends an initial request to `https://api.weatherdata.com`.
-2. **CORS Restriction**: Since the request is from a different origin, the browser checks if `https://api.weatherdata.com` allows requests from `https://weatherapp.com`.
-3. **CORS Header Check**: If `https://api.weatherdata.com` includes a header like `Access-Control-Allow-Origin: https://weatherapp.com`, the browser allows the request. If not, the browser blocks it.
+// Define a POST route to handle JSON data
+app.post('/data', (req, res) => {
+  // Access the parsed JSON data from req.body
+  const data = req.body;
+  console.log('Received data:', data);
 
-### Example CORS Setup for the Weather API
+  // Send a response
+  res.send('Data received');
+});
 
-If the weather API wants to allow cross-origin requests from specific domains, it would respond with headers like:
-
-```http
-Access-Control-Allow-Origin: https://weatherapp.com
-Access-Control-Allow-Methods: GET
-Access-Control-Allow-Headers: Content-Type
+app.listen(3000, () => {
+  console.log('Server running on port 3000');
+});
 ```
 
-### Why CORS Matters in This Case
+<aside>
+💡
 
-CORS ensures that only permitted domains can access the API, preventing unauthorized websites from misusing the data. It’s crucial in scenarios like this to protect APIs and user data from potential cross-origin exploits.
+Try converting the `calculator` assignment to use `POST` endpoints. Check if it works with/without the `express.json` middleware
 
+</aside>
+
+<aside>
+💡
+
+Express uses `bodyParser` under the hood - https://github.com/expressjs/express/blob/master/lib/express.js#L78C16-L78C26
+
+</aside>

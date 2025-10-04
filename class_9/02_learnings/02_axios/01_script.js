@@ -1,5 +1,5 @@
-(async()=>{
+(async () => {
     let response = await axios.get("https://jsonplaceholder.typicode.com/users/1")
 
-    document.querySelector(".posts").innerHTML = `Dummy user name: ${response.data.name}`
+    document.querySelector(".posts").innerHTML = `Dummy user name: ${response.data.name} <br> Dummy user Company: ${response.data.company.name}`
 })()

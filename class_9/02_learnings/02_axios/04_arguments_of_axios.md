@@ -1,4 +1,4 @@
-Sure! Let's break it down more simply. In Axios, there are two main ways to make HTTP requests:
+## In Axios, there are two main ways to make HTTP requests:
 
 1. **Using Shorthand Methods** (like `axios.get` and `axios.post`)
 2. **Using a Configuration Object** (passing an object to `axios` with all request details)
@@ -90,8 +90,10 @@ Each approach provides flexibility, so you can choose which style works best for
 
 
 ---
+---
+---
 
-Got it! In Axios:
+## In Axios:
 
 - **`data`** is similar to what you know as the **body** in HTTP requests. This is where you put the data you want to send with requests like `POST`, `PUT`, etc.
 - **`config`** is an object that holds additional options for your Axios request, like **headers** (for authentication or content type), **timeout** (to set a max wait time), and **params** (for adding query parameters to the URL).

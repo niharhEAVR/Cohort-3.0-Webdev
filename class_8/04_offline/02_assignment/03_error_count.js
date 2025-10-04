@@ -8,9 +8,27 @@
 
 const express = require('express')
 const app = express()
+let errorCount = 0;
 
-app.get('/', function (req, res) {
-  res.send('Hello World')
+app.get('/home', function (req, res, next) {
+
+
+  let flag = Math.random() >= 0.5 ? true : false;
+
+  if (flag) {
+    res.send('Hello World')
+  }
+  else {
+    next(new Error("Something went wrong"))
+  }
 })
+
+app.use((err, req, res, next) => {
+  errorCount++;
+  console.log(errorCount);
+  // console.log(err);
+  res.status(404).send("Not Found");
+})
+
 
 app.listen(3000)
