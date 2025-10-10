@@ -8,9 +8,9 @@ const users = [];
 
 const JWT_SECRET = "Secret Key";
 
-
 app.use(express.static(path.join(__dirname, 'public')));
 // if you dont understand what these two line of code is doing then read 02_notes.md in notes folder
+
 app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, 'public', '01_frontend.html'));
 });
@@ -69,8 +69,6 @@ function loginCheck(req, res, next) {
             message: "Token missing or unauthorized"
         });
     }
-
-
     try {
         const decodedJWT = JWT.verify(token, JWT_SECRET);
 
@@ -100,7 +98,6 @@ app.get("/dashboard", loginCheck, (req, res) => {
 
     const iat = req.iat;
     const date = new Date(iat * 1000);
-
 
     if (finduser) {
         res.json({

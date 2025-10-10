@@ -73,7 +73,7 @@ Each method can be used alone or combined to improve security based on the websi
 
 ---
 
-# today we are learning Token-Based Authentication
+#  Today we are learning Token-Based Authentication
 
 To see an example of **Token-Based Authentication** on a website, here’s what you could look for, and I'll explain how you can view this in action using developer tools in a browser.
 

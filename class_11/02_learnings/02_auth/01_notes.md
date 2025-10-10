@@ -147,6 +147,3 @@ Here's what typically happens:
      ```
 
 In summary, token storage is not automatic; the client code must be explicitly written to store and use the token as needed. This design allows flexibility, so developers can choose the most appropriate storage solution based on the app’s security needs.
-
-
-# Frontend engineer does it!

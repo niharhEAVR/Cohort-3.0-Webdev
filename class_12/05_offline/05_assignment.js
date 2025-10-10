@@ -27,9 +27,12 @@ function generateToken(email, password) {
 }
 
 const Signature = generateToken("cooldude@coolmail.com", "cooldude#69")
+console.log(Signature);
+
 
 function decodedJWT(signature) {
     const DECODED = jwt.decode(signature)
+    console.log(DECODED);
     if (DECODED) {
         return true
     } else {

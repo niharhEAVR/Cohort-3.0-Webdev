@@ -1,7 +1,7 @@
 const express = require("express")
 const app = express()
 
-app.use(express.json()) // if you want to learn what is the working of it then go 02_notes.md
+app.use(express.json())
 
 app.post('/sum', (req, res) => {
     const a = req.body.a

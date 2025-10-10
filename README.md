@@ -7,4 +7,6 @@ https://web-dev-cohort.notion.site/COHORT-3-WEB-DEV-SLIDES-3fdd102e713643c9b2e05
 
 ---
 
-### revise upto day-9 is done
+### revise upto day-12 is done
+
+now you work is to complete the nodejs and expressjs from the youtube (like basics)

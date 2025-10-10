@@ -16,6 +16,5 @@ app.post("/sum", function(req, res) {
 
 app.listen(3000)
 
-// more about cors in 01_notes/03_notes.md 
 // so cors is a library or framework
 // we need to install it manually

@@ -1,4 +1,4 @@
-# First revise all the codes in the 02_learnings folder then red this note
+# First revise all the codes in the 02_learnings folder then read this note
 
 ---
 

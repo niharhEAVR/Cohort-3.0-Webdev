@@ -9,6 +9,6 @@ const users = [
     }
 ];
 
-const findUser = users.find(user => user.userName === "goolldude" && user.password === "cooldude");
+const findUser = users.find(user => user.userName === "foolldude" && user.password === "cooldude");
 
 console.log(findUser)

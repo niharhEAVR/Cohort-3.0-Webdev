@@ -19,7 +19,6 @@ app.post("/signup", (req, res) => {
         message: "Signed up successfully"
     });
     console.log(users);
-
 });
 
 app.post("/signin", (req, res) => {
@@ -45,7 +44,7 @@ app.post("/signin", (req, res) => {
 });
 
 
-// Okay after signed in we need to copy that token and paste that token in headers section on the postman app by a key name as 'token' and the value of that key will be our generated token after signing in,, Other wise the get method will not work if you are doing an postman request
+// Okay after signed in, we need to copy that token and paste that token in headers section on the postman app by a key name as 'token' and the value of that key will be our generated token after signing in, Otherwise the get method will not work if you are doing an postman request
 
 app.get("/dashboard", (req, res) => {
     const token = req.headers.token;

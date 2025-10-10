@@ -5,27 +5,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CORS</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background-color: rgb(17, 17, 17);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.6/axios.min.js"></script>
 </head>
 <!-- if you want to run this code then go to ternimal then go to the directory of this file then type (npx serve) -->
 
 <!-- 01_notes.md more explanation about (npx serve) -->
+
 <body>
-    <input type="text" id="a" placeholder="vlaue of a">
-    <input type="text" id="b" placeholder="vlaue of b">
-    <button onclick="sendRequest()">Find Sum</button>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.6/axios.min.js"></script>
+    <div class="con">
+        <input type="text" id="a" placeholder="vlaue of a">
+        <input type="text" id="b" placeholder="vlaue of b">
+        <button onclick="sendRequest()">Find Sum</button>
+    </div>
     <script>
         async function sendRequest() {
-            const res = await axios.post("http://localhost:3000/sum",{
+            const res = await axios.post("http://localhost:3000/sum", {
                 a: document.getElementById('a').value,
                 b: document.getElementById('b').value
             });
             console.log(res)
             alert(res.data.ans)
         }
-        sendRequest();
     </script>
 </body>
+
 </html>
 
 
