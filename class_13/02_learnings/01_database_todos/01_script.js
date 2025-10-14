@@ -8,7 +8,11 @@ const app = express()
 dotenv.config()
 
 async function databaseConnections(req, res, next) {
-    await mongoose.connect(process.env.MONGO_URL)
+    try {
+        await mongoose.connect(process.env.MONGO_URL)
+    } catch (error) {
+        console.log(error || "Wrong Database Url");
+    }
     next()
 }
 

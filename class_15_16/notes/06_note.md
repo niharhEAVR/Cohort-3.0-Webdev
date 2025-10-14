@@ -1,7 +1,3 @@
-Sure! Let’s break it down step by step with a **text-visualized approach** in the context of an Express app using MongoDB (Mongoose).
-
----
-
 ### **Scenario**:  
 You have a `courseModel` collection in your MongoDB database that stores information about different courses. A user has made some purchases, and you want to **fetch the details of all courses** that the user has purchased.
 

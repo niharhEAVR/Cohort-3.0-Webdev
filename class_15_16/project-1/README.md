@@ -12,7 +12,7 @@
  - Create the frontend
 
 
- Good to haves
+Good to haves
   - Use cookies instead of JWT for auth
   - Add a rate limiting middleware
   - Frontend in ejs (low pri)

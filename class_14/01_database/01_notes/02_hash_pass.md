@@ -1,9 +1,3 @@
-### The slide of the class
-```link
-https://petal-estimate-4e9.notion.site/Databases-and-MongoDb-1017dfd107358065a996cda5ed89682e
-```
-
-
 # Hashing password
 
 ## Why should you hash passwords?
@@ -24,7 +18,6 @@ https://www.npmjs.com/package/bcrypt
 ```
 ---
 
-Let's break down each part of the paragraph in detail:
 
 ### 1. **Why should you hash passwords?**
 
@@ -42,9 +35,9 @@ A **salt** is a random value added to a password before hashing to make the hash
 
 ---
 
-Let’s clarify what it means to "defend against rainbow table attacks" by adding salt to passwords:
 
 ### Rainbow Table Attack
+
 A **rainbow table** is essentially a large collection of precomputed hashes for many possible passwords. Attackers create these tables by hashing common passwords (like "password123") and storing both the passwords and their corresponding hashes in a table. Then, if they get access to a database of hashed passwords, they can quickly look up the hashes in the table to see if any match. If they find a match, they can identify the original password without doing any work to crack it—just by using this precomputed table.
 
 ### How Salting Defends Against This

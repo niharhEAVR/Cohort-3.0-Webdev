@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const { userRouter } = require("./routes/user");
 const { courseRouter } = require("./routes/course");
 const { adminRouter } = require("./routes/admin");
+const { homeRouter } = require("./routes/home");
 const app = express();
 app.use(express.json());
 
@@ -13,6 +14,7 @@ app.use("/user", userRouter); // hold ctrl on keyboard and hover over one on the
 app.use("/course", courseRouter);
 app.use("/admin", adminRouter);
 // benefits of using these routes in showed on 01_notes.md
+app.use("/", homeRouter);
 
 (async ()=> {
     await mongoose.connect(process.env.MONGO_URL)

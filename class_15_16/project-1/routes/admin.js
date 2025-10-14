@@ -115,7 +115,7 @@ adminRouter.put("/course", adminMiddleware, async (req, res) => {
     const { title, description, imageUrl, price, courseId } = req.body;
 
     const course = await courseModel.updateOne({
-        creatorId: adminId, // this is for , if in db there is too many admins
+        creatorId: adminId, // if in db there is too many admins
         _id: courseId
     }, {
         title: title,
