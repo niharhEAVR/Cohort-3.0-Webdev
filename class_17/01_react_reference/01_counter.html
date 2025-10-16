@@ -5,6 +5,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        body{
+            background-color: #000;
+            color: #fff;
+        }
+        button{
+            font-size: large;
+            background-color: cornsilk;
+            border: none;
+        }
+        button:hover{
+            background-color: white;
+        }
+    </style>
 </head>
 
 <body>
@@ -19,7 +33,7 @@
         Under the hood, the react compiler convert your code to HTML/CSS/JS
     </div>
 
-    <br><br><br>
+    <br>
     <button>Counter 0</button>
     <script>
         document.querySelector("button").addEventListener("click", () => {

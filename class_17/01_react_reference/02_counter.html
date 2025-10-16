@@ -1,15 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+        }
+        button {
+            font-size: large;
+            background-color: cornsilk;
+            border: none;
+        }
+        button:hover {
+            background-color: white;
+        }
+    </style>
 </head>
+
 <body>
     <div class="buttonParent"></div>
     <script>
-        const state ={
-            count:0
+        const state = {
+            count: 0
         }
 
         function onButtonPress() {
@@ -21,9 +37,8 @@
             document.querySelector(".buttonParent").innerHTML = ""
             const button = buttonComponent(state.count)
             document.querySelector(".buttonParent").appendChild(button)
-            
-        }
 
+        }
         function buttonComponent(count) {
             const button = document.createElement("button")
             button.innerHTML = "Counter " + count
@@ -34,4 +49,5 @@
         // read 02_notes.md to know about the relation of this code with React
     </script>
 </body>
+
 </html>

@@ -33,7 +33,7 @@ userRouter.put("/courseBuy/:courseId", async (req, res) => {
         "$push": {
             purchasedCourses: courseId
         }
-        // read 02_notes.md in 01_notes folder
+        // read 03_notes.md in 01_notes folder
     })
     res.json({
         message: "course purchased succesfully"
@@ -51,7 +51,7 @@ userRouter.get("/purchases", async (req, res) => {
 
     const coursesData = await courseModel.find({
         _id: { $in: user.purchasedCourses }
-        // if you dont understand this then read 02_notes.md in 01_notes folder
+        // if you dont understand this then read 03_notes.md in 01_notes folder
     })
 
     res.json({
