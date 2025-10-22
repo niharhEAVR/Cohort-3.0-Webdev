@@ -5,6 +5,21 @@ https://web-dev-cohort.notion.site/COHORT-3-WEB-DEV-SLIDES-3fdd102e713643c9b2e05
 
 ---
 
-### revise upto day_17 > 01_react_reference is done
+### revise upto day_17 is done
 
-now you work is to complete the nodejs and expressjs from the youtube (like basics)
+
+---
+
+### Skills i learned from this course:
+
+1. Node.js
+2. Express.js
+3. MongoDB (Mongoose)
+4. React
+
+
+---
+
+# Todos
+
+1. now you work is to complete the nodejs and expressjs from the youtube (like in depth)

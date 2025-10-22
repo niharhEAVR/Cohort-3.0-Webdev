@@ -3,63 +3,76 @@ import "./App.css";
 
 function App() {
   const [todos, setTodos] = useState([
-    {
-      title: "Go to gym",
-      description: "Hit the gym regularly",
-      done: true,
-    },
+    { title: "Go to gym", description: "Hit the gym regularly", progress: true },
   ]);
 
-  function addTodo() {
-    let newArray = [...todos];
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [progress, setProgress] = useState(false);
 
-    newArray.push({
-      title: document.getElementById("title").value,
-      description: document.getElementById("description").value,
-      done: document.getElementById("doneYet").checked, // Use .checked for checkbox
-    });
-    setTodos(newArray);
+  function addTodo() {
+    if (!title.trim() || !description.trim()) return; // Prevent empty todos
+    setTodos([...todos, { title, description, progress }]);
+    setTitle("");
+    setDescription("");
+    setProgress(false);
   }
 
-  /*
-    setTodos([
-      ...todos,
-      {
-        title: document.getElementById("title").value,
-        description: document.getElementById("description").value,
-        done: document.getElementById("doneYet").checked, // Use .checked for checkbox
-      }
-    ])
-  */
-
+  function deleteTodo(index) {
+    const newTodos = todos.filter((_, i) => i !== index);
+    setTodos(newTodos);
+  }
 
   return (
-    <div>
-      <input id="title" type="text" placeholder="Title" />
-      <input id="description" type="text" placeholder="Description" />
-      <input id="doneYet" type="checkbox" />
-      <br />
-      <button onClick={addTodo}>Add todo</button>
-      <br />
+    <div className="App">
+      <h1>Todo App</h1>
+      <div className="input-area">
+        <input
+          type="text"
+          placeholder="Title"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+        />
+        <input
+          type="text"
+          placeholder="Description"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+        />
+        <label>
+          <input
+            type="checkbox"
+            checked={progress}
+            onChange={(e) => setProgress(e.target.checked)}
+          />
+          Progressing
+        </label>
+        <button onClick={addTodo}>Add Todo</button>
+      </div>
+
       {todos.map((todo, index) => (
         <Todo
-          key={index} // Add a unique key to each Todo component
+          key={index}
           title={todo.title}
           description={todo.description}
-          done={todo.done}
+          progress={todo.progress}
+          del={() => deleteTodo(index)}
         />
       ))}
     </div>
   );
 }
 
-function Todo(props) {
+function Todo({ title, description, progress, del }) {
   return (
-    <ul>
+    <ul className="box">
       <li>
-        <p>{props.title}</p>
-        <p>{props.description}</p>
-        <p>{props.done ? "Task is done" : "Task is not done"}</p>
+        <h2>{title}</h2>
+        <p>{description}</p>
+        <p>{progress ? "Task is progressing ✅" : "Task is not progressing ❌"}</p>
+        <button className="del" onClick={del}>
+          Delete
+        </button>
       </li>
     </ul>
   );

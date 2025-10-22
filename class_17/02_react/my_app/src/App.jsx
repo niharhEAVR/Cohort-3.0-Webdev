@@ -11,7 +11,7 @@ function App() {
       </button>
     </>
   )
-  // to understand whta is going on here read 01_notes.md on 02_react folder
+  // to understand what is going on here read 03_code_explanation.md on 02_react folder
 }
 
 export default App

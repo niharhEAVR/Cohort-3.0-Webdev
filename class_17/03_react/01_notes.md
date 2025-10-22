@@ -1,7 +1,3 @@
-Let me break this code down step-by-step and explain each part in detail:
-
----
-
 ### **1. Imports**
 ```javascript
 import { useState } from "react";
@@ -305,7 +301,3 @@ React renders this array as a list of `<Todo>` components in the DOM.
 - Each component is passed props (`title`, `description`, `done`).
 - React renders all these components in the UI.
 - `key` ensures efficient updates when the list changes.
-
----
-
-If you still find it unclear, let me know—I can illustrate it with diagrams or simpler examples!
