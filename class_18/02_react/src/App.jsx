@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react'
 import './App.css'
 
@@ -28,7 +29,8 @@ function Counter() {
     <>
       <h1>{count}</h1>
       <button onClick={() => setCount((prevCount) => prevCount + 1)}>increase</button>
-      <button onClick={() => setCount((prevCount) => prevCount - 1)}>decrease</button>
+      <button onClick={() => setCount((prevCount) => prevCount - 1)}>decrease</button><br /><br />
+      <button onClick={() => setCount(0)}>reset</button>
     </>
   )
 }

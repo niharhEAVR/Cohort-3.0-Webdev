@@ -60,5 +60,3 @@ Imagine you have a stopwatch that updates every second. When you leave the page 
 - `setInterval` starts a timer to update `count` every second.
 - `return () => clearInterval(interval)` is a cleanup function that **stops the timer** when the component is unmounted or before the effect runs again.
 - The **`[]` dependency array** ensures that the effect is executed **only once** after the initial render and the cleanup happens when the component unmounts.
-
-Let me know if you need further clarification on any of these points!

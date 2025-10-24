@@ -34,6 +34,9 @@ function Counter() {
 export default App
 ```
 
+---
+
+
 In React, **re-rendering** refers to the process of re-running the component's function and updating the UI based on changes in state or props. When a component’s state changes (e.g., using `setCount`), React re-renders that component to reflect the updated state in the UI.
 
 In your example, `setCount` is a function that updates the `count` state. When you call `setCount`, React schedules a re-render of the component where the state (`count`) has changed, so that the UI can display the new value.
