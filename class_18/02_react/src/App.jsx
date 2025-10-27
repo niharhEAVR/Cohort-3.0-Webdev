@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react'
 import './App.css'
 
@@ -20,9 +19,12 @@ function Counter() {
     }, 1000)
 
     // make use to off the strictmode to see this
-    console.log("Onetime this useEffect get printed")
+    console.log("Onetime this mount get printed")
     // Cleanup function to clear the interval when component unmounts
-    return () => clearInterval(interval) // read 03_notes.md
+    return () => {
+      console.log("unmount");
+      clearInterval(interval)
+    } // read 03_notes.md
   }, []) // Empty dependency array means this effect runs once after the initial render
 
   return (

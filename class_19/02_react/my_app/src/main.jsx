@@ -1,5 +1,5 @@
 import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client' // as we are creating an website thats why we are inporting createRoot from react-dom
+import { createRoot } from 'react-dom/client' // as we are creating an website thats why we are importing createRoot from react-dom
 
 // createRoot is a prebuilt function in react
 
