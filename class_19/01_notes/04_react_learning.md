@@ -94,9 +94,8 @@ By combining components and state, you can structure and manage the UI dynamical
 
 ---
 
-```text
-Creating More Components: You can create more components by defining functions and then using them inside other components, such as `App`
-```
+
+> Creating More Components: You can create more components by defining functions and then using them inside other components, such as `App`
 
 ### Q> So here what is you saying that the father of all component is App and i can create components and then add it to App component?
 

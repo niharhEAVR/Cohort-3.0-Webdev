@@ -1,4 +1,4 @@
-That's correct! In React, any data that is expected to change and should trigger a re-render of the component needs to be stored in **state** (using `useState`). This way, React will know when the data changes and can automatically re-render the component to reflect the new data.
+In React, any data that is expected to change and should trigger a re-render of the component needs to be stored in **state** (using `useState`). This way, React will know when the data changes and can automatically re-render the component to reflect the new data.
 
 ### Why Use State Instead of Regular Variables?
 

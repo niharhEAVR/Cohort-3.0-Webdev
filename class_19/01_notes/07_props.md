@@ -1,4 +1,4 @@
-Yes, **props** in React are similar to **function arguments** in JavaScript. They allow you to pass data from a **parent component** down to a **child component**. Just like function arguments, props help make components more reusable and customizable by enabling them to receive dynamic values from their parents.
+**Props** in React are similar to **function arguments** in JavaScript. They allow you to pass data from a **parent component** down to a **child component**. Just like function arguments, props help make components more reusable and customizable by enabling them to receive dynamic values from their parents.
 
 ### How Props Work (Compared to Function Arguments)
 

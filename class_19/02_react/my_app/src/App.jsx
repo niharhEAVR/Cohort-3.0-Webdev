@@ -1,6 +1,4 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() { // this App is a component
@@ -25,7 +23,7 @@ function ToggleImage() {
     <>
       <button onClick={()=> setIsVisible(isVisible => !isVisible)}>Toggle Image</button> <br />
       { isVisible && <img src="https://gratisography.com/wp-content/uploads/2024/10/gratisography-cool-cat-800x525.jpg"/>}
-      {/* I think you are smart enough to know whats happening here because of the javascript conditional operators and it is using like this way in react conditional rerendering */}
+      {/* Here is a conditional rendering happening (as we using conditions &&) read the 13_conditional_rerendering.md*/}
     </>
   )
 }

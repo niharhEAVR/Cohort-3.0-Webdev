@@ -1,5 +1,3 @@
-Sure! Let’s look at a real-life example to illustrate what components are and why they’re useful.
-
 ### Real-Life Example: Building a Car Dashboard
 
 Imagine you’re designing a digital **car dashboard** with different parts. Each part shows specific information and can work independently. You might have different sections like:
