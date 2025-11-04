@@ -7,7 +7,7 @@ All class slides:
 
 ### ✅ Progress
 
-Revision completed up to **Class_19 > 02_react (03_react is still lefts)**
+Revision completed up to **Class_19**
 
 ---
 
