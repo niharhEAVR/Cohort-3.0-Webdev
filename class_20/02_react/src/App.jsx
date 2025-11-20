@@ -12,6 +12,7 @@ function App() {
           <Route path="/neet/online-coaching-class-11" element={<Class11Program />} />
           <Route path="/neet/online-coaching-class-12" element={<Class12Program />} />
           <Route path="/" element={<Landing />} />
+          <Route path="*" element={<NoPage />} /> // This is for handling 404 page not found, which means any route other than the defined routes will go to NoPage component.
         </Route>
       </Routes>
     </BrowserRouter>
@@ -66,9 +67,24 @@ function Class11Program() {
 function Class12Program() {
   const navigate = useNavigate()
 
+
+  useEffect(() => {
+    setTimeout(() => {
+      navigate("/")
+    }, 5000);
+  }, [])
+
+
   return <div>
     <h1>NEET programs for Class 12th</h1>
     <button onClick={() => { navigate("/") }}>navigate to home page</button>
+    <p>This Page will navigate to home page after 5 seconds</p>
+  </div>
+}
+
+function NoPage() {
+  return <div>
+    <h1>404 - Page Not Found!</h1>
   </div>
 }
 

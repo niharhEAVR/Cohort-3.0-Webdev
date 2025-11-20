@@ -7,11 +7,15 @@ All class slides:
 
 ### ✅ Progress
 
-Revision completed up to **Class_19**
+Revision completed up to **Class_20**
+
+- Things left is: class_20 > 03_assignment.md
 
 ---
 
 ### 🧠 Skills Learned So Far
+
+* *Package Managers:* (npm)
 
 * **Node.js**
 * **Express.js**
@@ -22,14 +26,7 @@ Revision completed up to **Class_19**
 
 ### 🎯 Learning Strategy (Scope)
 
-First, **fully complete this course**.
-Then, go **skill-by-skill on YouTube** for **deep specialization** (Node, Express, React, MongoDB, etc. individually).
-
----
-
-### 📌 Current Todo
-
-1. **Your next task is to complete Node.js & Express.js in-depth from YouTube** (full understanding, not just surface level).
+Build Projects & Learn Along.
 
 ---
 
@@ -41,3 +38,16 @@ npm init -y # for declaration of package.json
 
 npm create vite@latest # this command is for react app using vite build tool
 ```
+
+
+---
+
+### Some project lists:
+
+1. Multiple Minor projects : Simon Says Game, Real-time Weather App (React), Todo List App, Spotify Replica etc.
+2. Airbnb (Travel & Listing)
+3. Zerodha (Investing & Stock Prices)
+4. ChatGPT (OpenAI API integration)
+5. Linkedin (Social Media)
+6. Github (our own Version Control)
+7. Zoom (Live Video Conferencing)

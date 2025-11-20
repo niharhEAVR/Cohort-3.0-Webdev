@@ -2,6 +2,14 @@ import { useEffect, useState, useRef } from 'react';
 import './App.css'
 
 function App() {
+    return (<>
+        <Focuser />
+        <RenderCount />
+        <Chat />
+    </>)
+}
+
+function Focuser() {
     const inputRef = useRef()
 
     return (<>
@@ -11,7 +19,6 @@ function App() {
             <br /><br />
             <button onClick={() => { inputRef.current.focus() }}>Focus on the review input</button>
         </div>
-        <RenderCount />
     </>)
 }
 
@@ -27,6 +34,34 @@ function RenderCount() {
             <p>Render Count: {renderCount.current}</p>
             <p>Current Count: {count}</p>
             <button onClick={() => setCount(count + 1)}>Increment Count</button>
+        </div>
+    );
+}
+
+function Chat() {
+    const [messages, setMessages] = useState(["Hello!", "How are you?"]);
+    const chatBoxRef = useRef(null);
+
+    const addMessage = () => {
+        setMessages((prevMessages) => [...prevMessages, "New message!"]);
+    };
+
+    // Scroll to the bottom whenever a new message is added
+    useEffect(() => {
+        chatBoxRef.current.scrollTop = chatBoxRef.current.scrollHeight;
+    }, [messages]);
+
+    return (
+        <div>
+            <div
+                ref={chatBoxRef}
+                style={{ height: "200px", overflowY: "scroll", border: "1px solid white", padding: "10px" }}
+            >
+                {messages.map((msg, index) => (
+                    <div key={index}>{msg}</div>
+                ))}
+            </div>
+            <button onClick={addMessage}>Add Message</button>
         </div>
     );
 }
