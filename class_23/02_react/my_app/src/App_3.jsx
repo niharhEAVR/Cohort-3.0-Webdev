@@ -1,43 +1,46 @@
-import { useEffect, useState, memo } from "react";
+import { useResetRecoilState, RecoilRoot, useSetRecoilState, useRecoilValue } from "recoil";
 import './App.css'
-import { RecoilRoot, useSetRecoilState, useRecoilValue } from "recoil";
-import { counterAtom, evenSelector } from "./store/atoms/counter_2";
-
+import { tempF, tempC } from "./store/atoms/Temperature.jsx";
 
 function App() {
-
-  return (
-    <>
-      <RecoilRoot>
-        <Counter />
-        <Buttons />
-        <EvenOrOdd />
-      </RecoilRoot>
-    </>
-  )
+    return <RecoilRoot>
+        <TempC />
+    </RecoilRoot>
 }
 
-function Counter() {
-  const count = useRecoilValue(counterAtom)
-  return <div>
-    {count}
-  </div>
+function TempC() {
+    const resetTemp = useResetRecoilState(tempC);
+    const setTempC = useSetRecoilState(tempC);
+    const setTempF = useSetRecoilState(tempF);
+
+    const addTenCelsius = () => setTempC((currentTemp) => currentTemp + 10);
+    const addTenFahrenheit = () => setTempF((currentTemp) => currentTemp + 10);
+
+    const reset = () => resetTemp();
+
+
+    const tempCValue = useRecoilValue(tempC);
+    const tempFValue = useRecoilValue(tempF);
+
+
+
+    return (
+        <div>
+            Temp (Celsius): {tempCValue}
+            <br />
+            Temp (Fahrenheit): {tempFValue}
+            <br />
+            <button onClick={addTenCelsius}>Add 10 Celsius</button>
+            <br />
+            <button onClick={addTenFahrenheit}>Add 10 Fahrenheit</button>
+            <br />
+            <button onClick={reset}>Reset</button>
+        </div>
+    )
+
+
+
 }
 
-function Buttons() {
-  const setCount = useSetRecoilState(counterAtom)
-  
-  return <div>
-    <button onClick={() => { setCount(c => c + 2) }}>Increase</button>
-    <button onClick={() => { setCount(c => c - 1) }}>Decrease</button>
-  </div>
-}
-
-function EvenOrOdd() {
-  const even = useRecoilValue(evenSelector)
-  return <div>
-    {even ? "Even" : "Odd"}
-  </div>
-}
 
 export default App

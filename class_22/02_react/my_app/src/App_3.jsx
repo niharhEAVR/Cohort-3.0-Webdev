@@ -1,6 +1,4 @@
-import { useState, useEffect } from 'react'
 import './App.css'
-
 import {useDebounce} from './custom_hooks/useDebounce'
 
 function App() {

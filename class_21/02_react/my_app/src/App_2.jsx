@@ -1,53 +1,46 @@
-// to solve the prop drilling we need context api
-import React,{ useContext, useState } from 'react'
+import { createContext, useContext, useState } from "react";
 import './App.css'
 
-const bulbContext = React.createContext()
 
-function App() {
-    const [isBulbOn, setisBulbOn] = useState(false)
-    return (
-        <>
-            <div style={{ border: "2px solid white", width: "200px", height: "200px", padding: "20px" }}>
-                <bulbContext.Provider value={{
-                    bulbOn: isBulbOn,
-                    setBulbOn: setisBulbOn
-                }}>
-                <Lightbulb/>
-                </bulbContext.Provider>
-            </div>
-        </>
-    )
-}
+const UserContext = createContext();
 
-function Lightbulb() {
+
+export default function App() {
+    const [user, setUser] = useState(false);
+
+
     return (
-        <>
-            <Bulb />
-            <br /><br />
-            <ToggleBulb />
-        </>
-    )
-}
-function Bulb() {
-    const {bulbOn} = useContext(bulbContext)
-    return (
-        <>
-            {bulbOn ? (<img src="https://clipart-library.com/images/di9XjpXAT.png" style={{ width: 80 }} />) : (<img src="https://openclipart.org/image/800px/48391" style={{ width: 50 }} />)}
-        </>
-    )
-}
-function ToggleBulb() {
-    const {bulbOn,setBulbOn} = useContext(bulbContext)
-    
-    return (
-        <>
-            <button onClick={() => setBulbOn(!bulbOn)}>toggle bulb</button>
-        </>
-    )
+        <UserContext.Provider value={{ user, setUser }}>
+            <Level1WithContext />
+        </UserContext.Provider>
+    );
 }
 
 
+function Level1WithContext() {
+    return <Level2WithContext />;
+}
 
 
-export default App
+function Level2WithContext() {
+    return <Level3WithContext />;
+}
+
+
+function Level3WithContext() {
+    const { user, setUser } = useContext(UserContext);
+
+
+    return (
+        <div className="p-4 border rounded-2xl shadow mt-4">
+            <h2 className="text-xl font-bold mb-2">With Context API</h2>
+            <p>User: {user ? "Rahul" : "Guest"}</p>
+            <button
+                className="mt-2 p-2 rounded-xl shadow"
+                onClick={() => setUser(!user)}
+            >
+                Change User
+            </button>
+        </div>
+    );
+}

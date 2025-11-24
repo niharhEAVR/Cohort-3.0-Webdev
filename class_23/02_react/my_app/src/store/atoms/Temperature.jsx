@@ -15,5 +15,3 @@ export const tempC = selector({
         )
 })
 
-
-// to understand this read the 04_code_explanation.md

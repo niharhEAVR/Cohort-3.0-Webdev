@@ -7,7 +7,7 @@ All class slides:
 
 ### ✅ Progress
 
-Revision completed up to **Class_20**
+Revision completed up to **Class_22 > 02_react > my_app**
 
 - Things left is: class_20 > 03_assignment.md
 
