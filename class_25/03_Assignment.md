@@ -1,4 +1,4 @@
-### First assignment of todays is to crete the exact clone of the `webinar.gg` login page page. 
+### First assignment of todays is to create the exact clone of the `webinar.gg` login page page. 
 
 ### Second assignment of todays is to use route and clone a otp page (dont use the actaul logic how otp will process, only the ui)
 

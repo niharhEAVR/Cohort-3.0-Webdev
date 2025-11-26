@@ -7,9 +7,10 @@ All class slides:
 
 ### ✅ Progress
 
-Revision completed up to **Class_22 > 02_react > my_app**
+Revision completed up to **Class_25**
 
-- Things left is: class_20 > 03_assignment.md
+- Things left is: class_20 > 03_assignment.md - [click](./class_20/03_assignment.md)
+- Things left is: class_25 > 03_assignment.md - [click](./class_25/03_Assignment.md)
 
 ---
 

@@ -1,12 +1,3 @@
-### before dive into the code do explore this github
-```link
-https://github.com/100xdevs-cohort-2/7.4
-```
-
----
----
----
-
 ```link
 https://recoiljs.org/docs/guides/asynchronous-data-queries
 ```
