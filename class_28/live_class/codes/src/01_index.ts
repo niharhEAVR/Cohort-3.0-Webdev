@@ -2,7 +2,8 @@
     interface User {
         name: String,
         age: Number,
-        address?: { // ? this means that user can give address or cannot 
+        address?: {
+            // ? this means that user can give address or cannot 
             email: String,
             phno?: Number
         }
@@ -26,7 +27,7 @@
         name: "bob",
         age: 13,
         address: {
-            email:"bobba@bob.com"
+            email: "bobba@bob.com"
         }
     }
 }
@@ -34,15 +35,13 @@
 
 {
     // interface can take another interface
-
-
     interface address {
-        email:String,
-        phno: Number
+        email: String,
+        phno?: Number
     }
     interface User2 {
         name: String,
         age: Number,
-        address: address
+        address?: address
     }
 }

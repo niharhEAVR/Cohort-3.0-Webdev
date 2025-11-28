@@ -1,6 +1,7 @@
 {
-  "name": "class_28",
+  "name": "codes",
   "version": "1.0.0",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -8,11 +9,8 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
-  "dependencies": {
-    "@types/express": "^5.0.0",
-    "express": "^4.21.1",
-    "typescript": "^5.6.3",
-    "zod": "^3.23.8"
+  "type": "commonjs",
+  "devDependencies": {
+    "typescript": "^5.9.3"
   }
 }

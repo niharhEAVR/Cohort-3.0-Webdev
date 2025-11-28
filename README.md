@@ -7,7 +7,7 @@ All class slides:
 
 ### ✅ Progress
 
-Revision completed up to **Class_27**
+Revision completed up to **Class_28 > live_class**
 
 - Things left is: class_20 > 03_assignment.md - [click](./class_20/03_assignment.md)
 - Things left is: class_25 > 03_assignment.md - [click](./class_25/03_Assignment.md)
@@ -40,7 +40,7 @@ npm init -y # for declaration of package.json
 npm create vite@latest # this command is for react app using vite build tool
 
 npm install -g typescript
-npx tsc --init
+tsc --init
 tsc -b
 ```
 
