@@ -1,0 +1,1 @@
+{"root":["./src/app.ts","./src/assets/config.ts","./src/assets/inputcheck.ts","./src/db/database.ts","./src/middleware/middleware.ts","./src/routes/authentication/auth.ts","./src/routes/content/content.ts","./src/routes/share/share.ts"],"version":"5.9.3"}

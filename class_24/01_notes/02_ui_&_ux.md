@@ -270,8 +270,3 @@ Used for:
 * **UI** = Convert wireframes to beautiful screens
 * **Product Design** = UI + UX + business
 * **Tools** = Figma, FigJam, Miro, Sketch
-
----
----
----
-

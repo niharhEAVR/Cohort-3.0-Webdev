@@ -7,7 +7,9 @@ All class slides:
 
 ### ✅ Progress
 
-Revision completed up to **Class_28**
+Revision completed up to **class_29_30 > backend** 
+
+- revise the class_28 typescript generics more indepth with its all keywords
 
 - Things left is: class_20 > 03_assignment.md - [click](./class_20/03_assignment.md)
 - Things left is: class_25 > 03_assignment.md - [click](./class_25/03_Assignment.md)
@@ -22,12 +24,13 @@ Revision completed up to **Class_28**
 * **Express.js**
 * **MongoDB (Mongoose)**
 * **React.js**
+* **TypeScript**
 
 ---
 
-### 🎯 Learning Strategy (Scope)
+### Some Important Docs:
 
-Build Projects & Learn Along.
+1. [Ui libraries](./class_24/01_notes/01_slide_link.md)
 
 ---
 
