@@ -1,9 +1,16 @@
+type PlusIconSize = "sm" | "md" | "lg"
 
 interface PlusIconProps {
-    size: "sm" | "md" | "lg"
+    size: PlusIconSize;
 }
 
-const sizeVariants = {
+interface SizeV{
+    sm:string;
+    md:string;
+    lg:string;
+}
+
+const sizeVariants:SizeV = {
     "sm": "size-2",
     "md": "size-4",
     "lg": "size-6"

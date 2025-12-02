@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import { type ReactElement } from "react";
 
 interface ButtonInterface {
     title: string;
@@ -6,6 +6,7 @@ interface ButtonInterface {
     startIcon?: ReactElement;
     endIcon?: ReactElement;
     variant: "primary" | "secondary";
+    hover: "hprimary" | "hsecondary";
 }
 
 const sizeStyles = {
@@ -19,12 +20,17 @@ const variantStyles = {
     "secondary": "bg-blue-200 text-blue-800",
 }
 
+const hoverStyles = {
+    "hprimary": "hover:bg-blue-400",
+    "hsecondary": "hover:bg-blue-200",
+}
+
 export const Button = (props: ButtonInterface) => {
 
-    return <button className={sizeStyles[props.size] + " " + variantStyles[props.variant]}>
+    return <button className={sizeStyles[props.size] + " " + variantStyles[props.variant] + " " + hoverStyles[props.hover]}>
         <div className="flex items-center">
             {props.startIcon}
-            <div className="pl-2 pr-2">
+            <div className="pl-1 pr-1">
                 {props.title}
             </div>
             {props.endIcon}

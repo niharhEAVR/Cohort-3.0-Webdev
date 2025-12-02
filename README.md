@@ -24,6 +24,7 @@ Revision completed up to **class_29_30 > backend**
 * **Express.js**
 * **MongoDB (Mongoose)**
 * **React.js**
+* **Tailwind Css** [Click Here to see the Tailwind css major change v4](https://www.youtube.com/watch?v=bupetqS1SMU)
 * **TypeScript**
 
 ---
