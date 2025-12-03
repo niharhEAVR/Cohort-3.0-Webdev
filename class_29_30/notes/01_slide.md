@@ -1,6 +1,8 @@
 ### This is project class and the slides are:
 
-[slides](https://petal-estimate-4e9.notion.site/Building-a-second-brain-app-1407dfd1073580c19ac3cbe9afa9ac27)
+[slides for the class](https://petal-estimate-4e9.notion.site/Building-a-second-brain-app-1407dfd1073580c19ac3cbe9afa9ac27)
+
+[Helping Codes from 100xdevs-cohort-3](https://github.com/100xdevs-cohort-3/brainly-fe-2)
 
 ---
 
@@ -47,6 +49,8 @@ npm create vite@latest # choose react > typescript
 
 ```sh
 npm create vite@latest # choose react > typescript
+npm install react-router-dom
+npm install recoil
 # install Shadcn/ui library with tailwind.
 # install Lucide-react
 ```

@@ -24,8 +24,12 @@ authRouter.post("/signup", async (req: Request, res: Response) => {
             return res.status(403).json({ message: "User already exists with this username" });
         }
         const hashed = await bcrypt.hash(password, 10);
-        await userModel.create({ username, password: hashed });
-        return res.status(200).json({ message: "Signed Up" });
+        const newUser = await userModel.create({ username, password: hashed });
+
+        const userToken = jwt.sign({
+            userId: newUser._id
+        }, JWT_SECRET)
+        return res.status(200).json({ message: "Signed Up",token: userToken });
     } catch (error) {
         console.error(error);
         return res.status(500).json({ message: "Server error" });

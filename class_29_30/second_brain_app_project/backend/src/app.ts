@@ -1,15 +1,19 @@
 import express from "express";
-import cors from "cors";
+import cors, { CorsOptions } from "cors";
+import dotenv from "dotenv";
+dotenv.config();
 
 const app = express();
 app.use(express.json());
-const corsOptions = {
-    origin: "http://localhost:5173", // frontend URL
-    credentials: true, // allow cookies to be sent
+
+interface corsOptions{
+    origin:string;
+}
+const corsOptions:CorsOptions = {
+    origin: process.env.DEV_FRONTEND_URL
 };
 
 app.use(cors(corsOptions));
-
 
 
 
@@ -26,23 +30,3 @@ app.use("/api/v1/brain", shareRouter);
 app.listen(3000, () => {
     console.log("Backend running on port 3000");
 })
-
-
-// const allowedOrigins = [
-    //     "http://localhost:5173",
-    // ];
-    
-    // app.use(cors({
-    //     origin: function (origin, callback) {
-    //         console.log(origin);
-            
-    //         if (!origin || allowedOrigins.includes(origin)) {
-    
-    //             return callback(null, true);
-    //         }
-    
-    //         callback(new Error("Not allowed by CORS"));
-    
-    //     },
-    //     credentials: true
-    // }));
