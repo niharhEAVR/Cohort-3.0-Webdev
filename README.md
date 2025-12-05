@@ -7,7 +7,7 @@ All class slides:
 
 ### ✅ Progress
 
-Revision completed up to **class_29_30 > backend** 
+Revision completed up to **class_31** 
 
 - revise the class_28 typescript generics more indepth with its all keywords
 
@@ -23,15 +23,18 @@ Revision completed up to **class_29_30 > backend**
 * **Node.js**
 * **Express.js**
 * **MongoDB (Mongoose)**
-* **React.js**
+* **React.js** (vite, zustand)
 * **Tailwind Css** [Click Here to see the Tailwind css major change v4](https://www.youtube.com/watch?v=bupetqS1SMU)
 * **TypeScript**
+* **Websocket**
+
 
 ---
 
 ### Some Important Docs:
 
 1. [Ui libraries](./class_24/01_notes/01_slide_link.md)
+2. [Second Brain Poject](./class_29_30/second_brain_app_project/)
 
 ---
 

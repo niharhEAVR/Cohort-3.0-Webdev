@@ -39,7 +39,7 @@ export const contentSchema = z.object({
             }
         },
         {
-            message: "Invalid MongoDB URL",
+            message: "Invalid URL",
         }
     ),
     type: z.enum(["image", "video", "article", "audio"], { message: "Invalid content type" }),

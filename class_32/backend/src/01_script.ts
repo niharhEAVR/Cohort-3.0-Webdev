@@ -1,8 +1,8 @@
-import { WebSocketServer, WebSocket } from "ws";
+import { WebSocketServer, type WebSocket } from "ws";
 const ws = new WebSocketServer({ port: 8080 })
 
 let allSockets: WebSocket[] = [];
-// this array is created because i want to put all the socket connections in this array (socket actually means connection)
+// this array is created because i want to put all the socket connections in this array (socket actually means connections)
 
 ws.on("connection", function connection(socket) {
 

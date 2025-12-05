@@ -11,10 +11,10 @@
   "license": "ISC",
   "description": "",
   "devDependencies": {
+    "@types/ws": "^8.18.1",
     "typescript": "^5.7.2"
   },
   "dependencies": {
-    "@types/ws": "^8.5.13",
     "ws": "^8.18.0"
   }
 }

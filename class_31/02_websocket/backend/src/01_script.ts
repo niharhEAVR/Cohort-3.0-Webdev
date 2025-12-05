@@ -11,8 +11,10 @@ wss.on('connection', function connection(socket) {
   socket.send("hello")
 
   setInterval(()=>{
-    console.log(`The price of bitcoin is: ${Math.random()}`)
-  },500)
+    let price = Math.random();
+    console.log(`The price of bitcoin is: ${price}`)
+    socket.send(`The price of bitcoin is: ${price}`)
+  },1500)
   
   // client sends messege to server (means client subscribe to the websocket server)
   socket.on("message",(e)=>{
@@ -25,5 +27,3 @@ wss.on('connection', function connection(socket) {
   })
 
 });
-
-// read 04_code_explanation.md to understand this

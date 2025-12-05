@@ -4,6 +4,7 @@ import { contentModel, tagModel } from "../../db/database";
 import { userMiddleware } from "../../middleware/middleware";
 import { contentSchema } from "../../assets/inputCheck";
 import { Types } from "mongoose";
+import th from "zod/v4/locales/th.js";
 
 
 
@@ -52,7 +53,11 @@ contentRouter.post("/content", userMiddleware, async (req: Request, res: Respons
             tags: tagIds,
         });
 
-        res.status(201).json({ message: "Content added", content });
+        if (!content) throw new Error("Content creation failed");
+        const populatedContent = await contentModel.findById(content._id)
+            .populate("tags", "title")
+
+        res.status(201).json({ message: "Content added", content: populatedContent });
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: "Error adding content", error });
@@ -74,7 +79,7 @@ contentRouter.delete("/content", userMiddleware, async (req, res) => {
         if (!Types.ObjectId.isValid(req.body.contentId)) {
             return res.status(400).json({ message: "Invalid contentId" });
         }
-        const {contentId} = req.body;
+        const { contentId } = req.body;
 
         const deleted = await contentModel.findOneAndDelete({
             _id: contentId,

@@ -47,12 +47,12 @@ shareRouter.get("/share/:shareId", async (req, res) => {
         }
 
         const brainData = await contentModel.find({ userId: user._id }).populate("userId", "-_id username")
-            .populate("tags", "-_id title");
+            .populate("tags", " title");
 
         // Want to Remove _id from populated fields
         // Use a minus sign (-) to exclude fields:
 
-        res.json({ brain: brainData });
+        res.json({ content: brainData });
     } catch (error) {
         console.error(error);
         return res.status(500).json({ message: "Server error" });

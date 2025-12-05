@@ -26,6 +26,8 @@ npm i --save-dev @types/cors
 
 - In tsconfig.json make the `"verbatimModuleSyntax": false,` or comment it, i mean off it
 
+---
+
 #### 2. Generic_components
 
 ```sh
@@ -44,13 +46,18 @@ npm create vite@latest # choose react > typescript
 1. [radix-ui icons](https://www.radix-ui.com/icons) - for icons not for large projects
 1. [heroicons by tailwind](https://heroicons.com/) - for icons not for large projects
 
+---
 
-#### 3. Frontend
+#### 3. Simple_Login_Page - same as Generic_components.
+
+---
+
+#### 4. Frontend
 
 ```sh
 npm create vite@latest # choose react > typescript
 npm install react-router-dom
-npm install recoil
+npm install zustand # because recoil is closed, the developer are not active
 # install Shadcn/ui library with tailwind.
 # install Lucide-react
 ```
@@ -64,9 +71,20 @@ npm install recoil
 
 ---
 
-## More things to do
+### The skill i learned from this is :
 
-1. finish all the pages
-2. use recoil and atom for stop huge bunch of rerendering and storing inputs and responses
-3. instead of axios try use fetch or try both
-4. after finishing the pages make a good ui for dashboard for user and shared user
+1. Zustand for state management
+
+---
+
+## There is some tasks lefts to do
+
+1. Add stop sharing functionality for frontend only, 
+2. For both frontend and backned add a sync feature, Where another user can sync the shared users brain contents into his/her own dashboard, 
+3. For frontend-developer side use axios instead of fetch and see which one is better, 
+4. Create a 404 Page for unknown routes, 
+5. (Optional) Handle all the edge-cases where the response gives statuses like 400's, 500's. 
+6. There we calling the backend too many time for each page, instead create a useBackend Hook which take necessary inputs and call the backent simultaneously aslong the pages. 
+7. use Filter options on contents for sidebar and downbar, 
+8. Lastly the Logout Functionality and a loding page with loading button for handle the waiting of the backend calls responses, and , 
+9. (Optioanl) Make the Intro page more brought and fill with more detail add animations.

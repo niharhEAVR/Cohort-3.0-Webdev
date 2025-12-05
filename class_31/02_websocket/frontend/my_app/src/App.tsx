@@ -31,7 +31,7 @@ function App() {
     <>
       <div>
         {/* @ts-ignore */}
-        <input ref={inputRef} type="text" placeholder='Messege...' />
+        <input ref={inputRef} type="text" placeholder='Messege...' value={"ping"}/>
         <button onClick={sendMessege}>Send</button>
       </div>
     </>

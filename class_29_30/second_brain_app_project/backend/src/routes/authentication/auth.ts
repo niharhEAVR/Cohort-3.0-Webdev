@@ -124,7 +124,7 @@ authRouter.put("/forgotpass", async (req: Request, res: Response) => {
         // SEND EMAIL → (fake for now)
         console.log("Reset link:", `https://yourapp.com/resetpass?token=${resetToken}`);
 
-        return res.json({ message: "Password reset link sent to your email and it will valid for net 15 minutes only." });
+        return res.json({ message: "Password reset link sent to your email and it will valid for next 15 minutes only." });
 
     } catch (error) {
         console.error(error);
