@@ -3,21 +3,23 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev1": "tsc -b && node ./dist/01_normal_sql.js",
-    "dev2": "tsc -b && node ./dist/02_my_code.js",
-    "dev3": "tsc -b && node ./dist/03_advanced_sql.js"
+    "dev1": "ts-node ./src/01_normal_sql.ts",
+    "dev2": "ts-node ./src/02_sql_injection.ts",
+    "buildAndRun1": "tsc -b && node ./dist/01_normal_sql.js",
+    "buildAndRun2": "tsc -b && node ./dist/02_sql_injection.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "@types/express": "^5.0.0",
-    "@types/node": "^22.10.1",
-    "@types/pg": "^8.11.10",
     "dotenv": "^16.4.5",
     "express": "^4.21.1",
-    "pg": "^8.13.1",
-    "typescript": "^5.7.2"
+    "pg": "^8.13.1"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/pg": "^8.15.6",
+    "typescript": "^5.9.3"
   }
 }

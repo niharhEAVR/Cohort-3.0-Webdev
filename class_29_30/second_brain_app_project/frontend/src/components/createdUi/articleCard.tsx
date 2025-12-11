@@ -3,6 +3,7 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { ArrowUpRight, Newspaper, Image, Video, AudioLines } from "lucide-react"
 import { DeleteConfirmPopover } from "./confirmpopup"
+import { SyncConfirmPopover } from "./syncPopup"
 
 interface Tag {
   _id: string;
@@ -61,6 +62,8 @@ export function ArticleCard({
             
             {/* Only show delete button if NOT in read-only mode */}
             {!readOnly && <DeleteConfirmPopover id={_id} />}
+            {/* Only show sync button if it is in read-only mode */}
+            {readOnly && <SyncConfirmPopover id={_id} />}
           </div>
         </div>
 

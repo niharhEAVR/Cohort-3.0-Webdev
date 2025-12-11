@@ -7,15 +7,15 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import PassWordComponent from "@/components/createdUi/passwordInput"
 
 // The link should be
 // https://localhost:5173/resetpass?token=7249ba86f7e084ba470f2f3dd22942ebed2789d947d8fa547c612a0ce47c1d73
 
 
 import { useRef } from "react"
-import { useNavigate, type NavigateFunction, useSearchParams } from "react-router-dom"
+import { useNavigate, type NavigateFunction, useSearchParams,Navigate } from "react-router-dom"
 
 const handleForgotPass = async (passRef: HTMLInputElement, navigate: NavigateFunction,token:string|null) => {
   try {
@@ -33,7 +33,7 @@ const handleForgotPass = async (passRef: HTMLInputElement, navigate: NavigateFun
     const data = await res.json();
     console.log(data);
     alert(data.message);
-    navigate("/login");
+    navigate("/auth/login");
   } catch (error) {
     alert("Wrong or Missing Link")
     console.error("Error logging in:", error);
@@ -46,6 +46,7 @@ export function ResetPassPage() {
   const passRef = useRef<HTMLInputElement>(null);
   const [searchParams] = useSearchParams();
   const token = searchParams.get("token");
+  if (!token) return <Navigate to="/" replace />;
   console.log("Query token:", token," -- ", typeof token);
 
   return (
@@ -63,7 +64,7 @@ export function ResetPassPage() {
               <div className="flex items-center">
                 <Label htmlFor="password">Password</Label>
               </div>
-              <Input id="password" type="password" required placeholder="Cooldude@200" ref={passRef} />
+              <PassWordComponent ref={passRef}/>
             </div>
           </div>
         </form>

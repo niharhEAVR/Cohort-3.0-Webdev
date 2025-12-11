@@ -7,7 +7,7 @@ All class slides:
 
 ### ✅ Progress
 
-Revision completed up to **class_31** 
+Revision completed up to **class_34** 
 
 - revise the class_28 typescript generics more indepth with its all keywords
 
@@ -27,7 +27,7 @@ Revision completed up to **class_31**
 * **Tailwind Css** [Click Here to see the Tailwind css major change v4](https://www.youtube.com/watch?v=bupetqS1SMU)
 * **TypeScript**
 * **Websocket**
-
+* **NeonDB (Postgres Sql)**
 
 ---
 
@@ -37,7 +37,6 @@ Revision completed up to **class_31**
 2. [Second Brain Poject](./class_29_30/second_brain_app_project/)
 
 ---
-
 
 ### some important commands:
 
@@ -51,10 +50,15 @@ tsc --init
 tsc -b
 ```
 
-
 ---
 
 ### Some project lists:
+
+- Creative
+
+1. Private Chat App, Encrypted from outer world
+
+- Clones
 
 1. Multiple Minor projects : Simon Says Game, Real-time Weather App (React), Todo List App, Spotify Replica etc.
 2. Airbnb (Travel & Listing)

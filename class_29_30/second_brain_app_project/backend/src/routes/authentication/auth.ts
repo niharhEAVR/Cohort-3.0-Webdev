@@ -29,7 +29,7 @@ authRouter.post("/signup", async (req: Request, res: Response) => {
         const userToken = jwt.sign({
             userId: newUser._id
         }, JWT_SECRET)
-        return res.status(200).json({ message: "Signed Up",token: userToken });
+        return res.status(200).json({ message: "Signed Up",token: userToken,username:newUser.username });
     } catch (error) {
         console.error(error);
         return res.status(500).json({ message: "Server error" });
@@ -73,7 +73,7 @@ authRouter.post("/signin", async (req: Request, res: Response) => {
         const userToken = jwt.sign({
             userId: user._id
         }, JWT_SECRET)
-        return res.status(200).json({ message: "Logged in", token: userToken });
+        return res.status(200).json({ message: "Logged in", token: userToken,username:user.username });
 
     } catch (error) {
         console.error(error);
@@ -167,7 +167,7 @@ authRouter.put("/resetpass", async (req: Request, res: Response) => {
                 $set: {
                     password: hashed
                 },
-                $unset: { resetToken: "", resetExpiry: "" } // delete token
+                resetToken: null, resetExpiry: null // doing $unset here may cause issues with schema types so just setting to null.
             }
         );
 

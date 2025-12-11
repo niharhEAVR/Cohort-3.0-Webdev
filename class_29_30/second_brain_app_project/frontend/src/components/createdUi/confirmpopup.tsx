@@ -31,6 +31,8 @@ async function handleDelete(id: string) {
         console.log(data);
 
         useContentStore.getState().deleteContent(id)
+        console.log(useContentStore.getState().content);
+        
 
         alert(data.message)
     } catch (error) {

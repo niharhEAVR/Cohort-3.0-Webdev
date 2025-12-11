@@ -1,45 +1,77 @@
-import { useEffect, useState, useRef } from "react"
-import Frontend from "./components/Frontend"
-function App() {
-  const [messages, setMessages] = useState(["Chat Here..."]);
-  const wsRef = useRef();
-  
-  useEffect(() => {
-    const ws = new WebSocket("http://localhost:8080");
-    
-    wsRef.current = ws;
+import { useEffect, useState, useRef } from "react";
+import Frontend from "./components/Frontend";
 
-
-    ws.onmessage = (event) => {
-      setMessages(m => [...m, event.data]) // this line of code actually doing is that if there is initial messages then add spread them on the array and add new messages also
-      // if we only stores the current message then, previous message will goes away, which is not correct 
-    }
-
-    ws.onopen = ()=>{
-      ws.send(JSON.stringify({
-        type: "join",
-        payload: {
-          roomId: "red"
-        }
-      }))
-    }
-
-
-    return () => {
-      ws.close()
-    }
-
-  }, []);
-
-
-
-  return (
-    <>
-
-      <Frontend messages={messages} ws={wsRef}/>
-
-    </>
-  )
+interface Msg {
+  text: string;
+  self: boolean;
 }
 
-export default App
+
+function App() {
+  const [messages, setMessages] = useState<Msg[]>([]);
+  const [currentRoom, setCurrentRoom] = useState<string | null>(null);
+
+  const wsRef = useRef<WebSocket>(null as any);
+
+  // Create WebSocket connection only once
+  useEffect(() => {
+    const ws = new WebSocket("ws://localhost:8080");
+    wsRef.current = ws; // stroing the ws connection for the future use.
+
+    ws.onmessage = (event) => {
+      setMessages(prev => [...prev, { text: event.data, self: false }]);
+    };
+
+
+    return () => ws.close();
+  }, []);
+
+  // Join room handler
+  const joinRoom = (roomId: string) => {
+    setMessages([]);        // clear old room messages
+    setCurrentRoom(roomId); // store current room name
+
+    wsRef.current?.send(
+      JSON.stringify({
+        type: "join",
+        payload: { roomId },
+      })
+    );
+  };
+
+  return (
+    <div className="w-screen h-screen flex flex-col items-center justify-center bg-black text-white">
+
+      {/* Room Selection Buttons */}
+      {currentRoom === null && (
+        <div className="flex gap-6">
+          <button
+            className="px-6 py-3 bg-gray-800 rounded-lg text-lg"
+            onClick={() => joinRoom("black")}
+          >
+            Enter Black Room
+          </button>
+
+          <button
+            className="px-6 py-3 bg-red-600 rounded-lg text-lg"
+            onClick={() => joinRoom("red")}
+          >
+            Enter Red Room
+          </button>
+        </div>
+      )}
+
+      {/* Chat UI */}
+      {currentRoom !== null && (
+        <Frontend
+          messages={messages}
+          ws={wsRef}
+          setSrc={setCurrentRoom}
+          setMessages={setMessages}
+        />
+      )}
+    </div>
+  );
+}
+
+export default App;

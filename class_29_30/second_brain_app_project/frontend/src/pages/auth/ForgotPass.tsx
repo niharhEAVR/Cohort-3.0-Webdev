@@ -52,7 +52,7 @@ export function FotgotPassPage() {
           Enter your username
         </CardDescription>
         <CardAction>
-          <Button variant="link" onClick={()=>navigate("/login")}>Login</Button>
+          <Button variant="link" onClick={()=>navigate("/auth/login")}>Login</Button>
         </CardAction>
       </CardHeader>
       <CardContent>

@@ -1,4 +1,8 @@
-export interface Tag {
+interface tagsString{
+  title:string;
+}
+
+export interface Tag extends tagsString {
   _id: string;
   title: string;
 }
@@ -20,4 +24,11 @@ export interface ContentItem {
 
 export interface ContentResponse {
   content: ContentItem[];
+}
+
+export interface cleanContentItem {
+  link: string;
+  tags: string[];
+  title: string;
+  type: string;
 }

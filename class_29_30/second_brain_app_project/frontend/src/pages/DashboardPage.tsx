@@ -8,10 +8,9 @@ import { SidebarProvider } from "@/components/ui/sidebar";
 import { SideBarLayout } from "@/components/createdUi/sideBar";
 import { ApiInputPopover } from "@/components/createdUi/pupup";
 import SecondBrainDialog from "@/components/createdUi/shareDialog";
+import { type ShareItems, useShareStore } from "@/store/share.store";
 
-
-const handleGetContents = async (): Promise<ContentResponse> => {
-  const token = localStorage.getItem("token");
+const handleGetContents = async (token: string): Promise<ContentResponse> => {
 
   try {
     const res = await fetch(`http://localhost:3000/api/v1/content`, {
@@ -29,27 +28,51 @@ const handleGetContents = async (): Promise<ContentResponse> => {
   }
 };
 
+const handleCheckShare = async (token: string): Promise<ShareItems> => {
+
+  try {
+    const res = await fetch(`http://localhost:3000/api/v1/brain/checkshare`, {
+      method: "GET",
+      headers: { Authorization: `Bearer ${token}` },
+    });
+
+    if (!res.ok) throw new Error("API error");
+
+    const data: ShareItems = await res.json();
+    return data;
+  } catch (error) {
+    console.error("Error fetching content:", error);
+    return { message: "", linkSharing: false, link: "" };
+  }
+};
 
 
 
 export default function DashboardPage() {
   const token = localStorage.getItem("token");
-  if (!token) return <Navigate to="/login" replace />;
+  if (!token) return <Navigate to="/" replace />;
 
 
-  const content = useContentStore()
+  const content = useContentStore();
+  const shareCheck = useShareStore();
 
   useEffect(() => {
     const fetchData = async () => {
-      const result = await handleGetContents();
+      const result = await handleGetContents(token!);
       console.log(result.content, typeof result.content);
       useContentStore.getState().setContent(result.content);
     };
     fetchData();
   }, []);
 
-
-
+  useEffect(() => {
+    const fetchData = async () => {
+      const shareResult: ShareItems = await handleCheckShare(token!);
+      console.log(shareResult, typeof shareResult);
+      useShareStore.getState().setShare(shareResult);
+    }
+    fetchData();
+  }, [])
 
   return (
     <SidebarProvider >
@@ -63,7 +86,7 @@ export default function DashboardPage() {
             <h2 className="text-3xl font-semibold">All Notes</h2>
 
             <div className="flex gap-4 md:flex-row flex-col">
-              <SecondBrainDialog />
+              {shareCheck.share.linkSharing === true ? <SecondBrainDialog share={shareCheck.share} /> : <SecondBrainDialog/>}
               <ApiInputPopover />
             </div>
           </div>

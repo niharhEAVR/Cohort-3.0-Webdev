@@ -17,7 +17,7 @@ https://petal-estimate-4e9.notion.site/Chat-app-1487dfd107358090af74d91494085834
 
 ```sh
 npm init -y
-npm i typescript @types/ws
+npm i typescript @types/ws --save-dev
 npx tsc --init
 npm i ws
 ```
@@ -33,4 +33,4 @@ npm create vite@latest # react > typescript
 
 ### New Skill Learned
 
--> PubSub for handling the multiple ws servers
+-> PubSub for handling the multiple ws servers or Scalling the websockets servers

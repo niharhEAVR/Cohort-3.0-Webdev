@@ -23,9 +23,12 @@ ws.on("connection", function connection(socket) {
         // we are running a loop to all the connections in the allSocket array, so we can send message from one connections to others connections, like a backend chat application
     })
 
+    socket.on("close", () => {
+        allSockets = allSockets.filter(s => s !== socket);
+        console.log("user disconnected");
+    });
+
 })
 
 
 // use postman and https://hoppscotch.io/ for 2 connections
-
-// more explanation on the 01_notes.md in notes folder

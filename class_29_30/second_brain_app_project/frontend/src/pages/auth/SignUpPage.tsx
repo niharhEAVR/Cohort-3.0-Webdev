@@ -16,8 +16,11 @@ import { useNavigate, type NavigateFunction } from "react-router-dom"
 import { useAuthStore } from "@/store/auth.store"
 import { useBackendStore } from "@/store/backend.store"
 
+import PassWordComponent from "@/components/createdUi/passwordInput"
+import { useProfieStore } from "@/store/profile.store"
 
-const handleSignUp = async (username: HTMLInputElement, pass: HTMLInputElement, navigate: NavigateFunction, url:string, ves:string) => {
+
+const handleSignUp = async (username: HTMLInputElement, pass: HTMLInputElement, navigate: NavigateFunction, url: string, ves: string) => {
   try {
     const res = await fetch(`${url}/${ves}/signup`, {
       method: "POST",
@@ -27,14 +30,16 @@ const handleSignUp = async (username: HTMLInputElement, pass: HTMLInputElement, 
         password: pass.value
       }),
     });
-    
+
     if (!res.ok) throw new Error("API error");
     const data = await res.json();
     if (!data) throw new Error("Check username or password")
-      console.log(data);
+    console.log(data);
     localStorage.setItem("token", data.token);
     alert(data.token);
     useAuthStore.getState().login(data.token);
+    useProfieStore.getState().setUsername(data.username)
+
     navigate("/dashboard");
   } catch (error) {
     console.error("Error logging in:", error);
@@ -42,7 +47,7 @@ const handleSignUp = async (username: HTMLInputElement, pass: HTMLInputElement, 
 };
 
 export function SignUpPage() {
-  
+
   const navigate = useNavigate();
   const usernameRef = useRef<HTMLInputElement>(null);
   const passRef = useRef<HTMLInputElement>(null);
@@ -56,7 +61,7 @@ export function SignUpPage() {
           Enter your username below to Signing up.
         </CardDescription>
         <CardAction>
-          <Button variant="link" onClick={() => { navigate("/login") }}>login</Button>
+          <Button variant="link" onClick={() => { navigate("/auth/login") }}>login</Button>
         </CardAction>
       </CardHeader>
       <CardContent>
@@ -76,13 +81,13 @@ export function SignUpPage() {
               <div className="flex items-center">
                 <Label htmlFor="password">Password</Label>
               </div>
-              <Input id="password" type="password" required placeholder="Cooldude@200" ref={passRef} />
+              <PassWordComponent ref={passRef} />
             </div>
           </div>
         </form>
       </CardContent>
       <CardFooter className="flex-col gap-2">
-        <Button type="submit" className="w-full py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-medium transition-all duration-200 shadow-md" onClick={() => handleSignUp(usernameRef.current!, passRef.current!, navigate,VITE_BACKEND_URL,VITE_BACKEND_URL_VERSIONS)}>
+        <Button type="submit" className="w-full py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-medium transition-all duration-200 shadow-md" onClick={() => handleSignUp(usernameRef.current!, passRef.current!, navigate, VITE_BACKEND_URL, VITE_BACKEND_URL_VERSIONS)}>
           Sign up
         </Button>
       </CardFooter>

@@ -20,7 +20,7 @@
     }
     let allSockets: User[] = [];
 
-    ideally this will look like this
+    and this will look like this
     [
         {socket: socket1, room: "room1"},
         {socket: socket2, room: "room2"},
@@ -31,8 +31,7 @@
 */
 
 
-
-import { WebSocketServer, WebSocket } from "ws";
+import { WebSocketServer, type WebSocket } from "ws";
 const ws = new WebSocketServer({ port: 8080 })
 
 interface User {
@@ -42,32 +41,51 @@ interface User {
 let allSockets: User[] = [];
 
 ws.on("connection", function connection(socket) {
+    console.log("user connected");
 
-    // now we will not gonna put all the connection on the alsockets array, after connected if anyone tells that connect me to a room then we will push him 
-    socket.send("join a room!");
+    // Now after user connects with the socket, we will not gonna put that connection on the alsockets array, If the user sends message something like this "{"type": "join","payload": {"roomId": "black"}}", which has a type join then wil will let him in the array with room acceptence.
     socket.on("message", (data) => {
-        // client will sent backend message like an object of string so the data will look like '{}', and we need to convert that data from string to object
-        const parsedMessage = JSON.parse(data as unknown as string)
+
+        const parsedMessage = JSON.parse(data as unknown as string) // client will sent backend message like an object of string so the data will look like "{somethings}", and we need to convert that data from string to object
+
         if (parsedMessage.type === "join") {
+
+            // Remove old entries of this socket
+            allSockets = allSockets.filter(user => user.socket !== socket);
+
+            // Add fresh entry
             allSockets.push({
                 socket,
                 room: parsedMessage.payload.roomId
-            })
+            });
+
+            socket.send(`Joined room: ${parsedMessage.payload.roomId}`);
         }
-        // when the client wants to join in the room then we will push him on the array
-        
+
+
         if (parsedMessage.type === "chat") {
-            const currentUserRoom = allSockets.find(user => user.socket == socket)?.room
+            const currentUserRoom = allSockets.find(user => user.socket == socket)?.room // black, or red, or blue.
 
             allSockets.forEach(user => {
                 if (user.room === currentUserRoom && user.socket !== socket) {
                     user.socket.send(parsedMessage.payload.message)
                 }
             })
+        } // now if anyuser wants to chat then we will find him in the allSocket array and gets his roomId and send message to all the sockets or connections for only his room only 
+
+        if (parsedMessage.type === "leave") {
+            allSockets = allSockets.filter(user => user.socket !== socket);
+            socket.send("You left the room");
         }
-        // now if anyuser wants to chat then we will find him in the allSocket array and gets his roomId and send message to all the sockets or connections for only his room only 
+
 
     })
+
+
+    socket.on("close", () => {
+        allSockets = allSockets.filter(s => s.socket !== socket);
+        console.log("user disconnected");
+    }); // when user disconnects we will remove that connection from the allSockets array
 
 })
 
@@ -78,14 +96,14 @@ ws.on("connection", function connection(socket) {
 {
     "type": "join",
     "payload": {
-        "roomId": "red"
+        "roomId": "black"
     }
 }
 
 {
     "type": "chat",
     "payload": {
-        "message": "hello all the hoppscotch connections in red room"
+        "message": "hello all the users connections in black room"
     }
 }
 */

@@ -79,12 +79,16 @@ npm install zustand # because recoil is closed, the developer are not active
 
 ## There is some tasks lefts to do
 
-1. Add stop sharing functionality for frontend only, 
-2. For both frontend and backned add a sync feature, Where another user can sync the shared users brain contents into his/her own dashboard, 
-3. For frontend-developer side use axios instead of fetch and see which one is better, 
-4. Create a 404 Page for unknown routes, 
-5. (Optional) Handle all the edge-cases where the response gives statuses like 400's, 500's. 
-6. There we calling the backend too many time for each page, instead create a useBackend Hook which take necessary inputs and call the backent simultaneously aslong the pages. 
-7. use Filter options on contents for sidebar and downbar, 
-8. Lastly the Logout Functionality and a loding page with loading button for handle the waiting of the backend calls responses, and , 
+3. use Filter options on contents for sidebar and downbar
+4. For frontend-developer side use axios instead of fetch and see which one is better, 
+5. Create a 404 Page for unknown routes, 
+6. (Optional) Handle all the edge-cases where the response gives statuses like 400's, 500's. 
+7. There we calling the backend too many time for each page, instead create a useBackend Hook which take necessary inputs and call the backend simultaneously aslong the pages. 
+8. A loding page with loading button for handle the waiting of the backend calls responses
 9. (Optioanl) Make the Intro page more brought and fill with more detail add animations.
+10. Integrate the Backend with the ai and if dont know how revisit the class again
+
+
+---
+
+## For now i am closing this project here becasue it already covered all the things that was needed, And now i have more things to do.

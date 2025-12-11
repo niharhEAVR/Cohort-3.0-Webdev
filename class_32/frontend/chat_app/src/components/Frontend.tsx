@@ -1,21 +1,43 @@
-import { useRef } from "react";
-
+import { useRef, type Dispatch, type SetStateAction } from "react";
 import './scrollbar.css';
 
-//@ts-ignore
-function Frontend(props) {
+interface Msg {
+    text: string;
+    self: boolean;
+}
 
-    const inputRef = useRef();
+interface FrontendProps {
+    messages: Msg[];
+    ws: React.MutableRefObject<WebSocket>;
+    setSrc: Dispatch<SetStateAction<string | null>>;
+    setMessages: Dispatch<SetStateAction<Msg[]>>;
+}
+
+
+function Frontend(props: FrontendProps) {
+
+    const inputRef = useRef<HTMLInputElement>(null);
 
     return (
         <>
-            <div className="w-screen h-screen bg-stone-900 flex justify-center items-center">
+            <div className="w-screen h-screen bg-stone-900 flex justify-center items-center flex-col gap-4">
                 <div className="border-2 border-white rounded-xl h-[50vh] w-[50vw] p-2 flex flex-col gap-2">
                     {/* Content Section */}
                     <div className="border-2 border-white rounded-xl grow p-3 flex flex-col gap-4 text-white overflow-auto custom-scrollbar">
-                        {/*@ts-ignore*/}
-                        {props.messages.map(message => <div>{message}</div>)} 
-                        {/* In this line of code we are getting and array in porps, so we did use map for all the message then itrate one by one and putting them into their own div */}
+                        {props.messages.map((msg, index) => (
+                            <div
+                                key={index}
+                                className={`w-full flex ${msg.self ? "justify-end" : "justify-start"}`}
+                            >
+                                <div
+                                    className={`px-3 py-2 rounded-lg max-w-[70%] ${msg.self ? "bg-blue-600" : "bg-gray-700"
+                                        }`}
+                                >
+                                    {msg.text}
+                                </div>
+                            </div>
+                        ))}
+
                     </div>
 
                     {/* Input and Button */}
@@ -28,15 +50,21 @@ function Frontend(props) {
                                 ref={inputRef}
                             />
                             <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
-                                onClick={()=>{
-                                    const message = inputRef.current.value;
+                                onClick={() => {
+                                    const msg = inputRef.current?.value;
+
+                                    // Add self message to UI (right side)
+                                    props.setMessages(prev => [...prev, { text: msg!, self: true }]);
+
                                     props.ws.current.send(JSON.stringify({
                                         type: "chat",
                                         payload: {
-                                            message: message
+                                            message: msg
                                         }
+                                    }));
 
-                                    }))
+                                    inputRef.current!.value = "";
+
                                 }}
                             >
                                 Send
@@ -44,6 +72,16 @@ function Frontend(props) {
                         </div>
                     </div>
                 </div>
+                <button
+                    onClick={() => {
+                        props.ws.current.send(JSON.stringify({ type: "leave" }));
+                        props.setSrc(null);
+                    }}
+                    className="border-4 rounded-xl p-2 bg-sky-200 text-black font-bold"
+                >
+                    Leave Room
+                </button>
+
             </div>
         </>
     )
