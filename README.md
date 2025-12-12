@@ -7,12 +7,12 @@ All class slides:
 
 ### ✅ Progress
 
-Revision completed up to **class_34** 
+Revision completed up to **class_35** 
 
-- revise the class_28 typescript generics more indepth with its all keywords
-
-- Things left is: class_20 > 03_assignment.md - [click](./class_20/03_assignment.md)
+- **On the class_32 Add the Pub/Sub thing for websockets using Redis. (Important)**
+- Revise the class_28 typescript generics more indepth with its all keywords
 - Things left is: class_25 > 03_assignment.md - [click](./class_25/03_Assignment.md)
+- Things left is: class_20 > 03_assignment.md - [click](./class_20/03_assignment.md)
 
 ---
 
@@ -27,7 +27,8 @@ Revision completed up to **class_34**
 * **Tailwind Css** [Click Here to see the Tailwind css major change v4](https://www.youtube.com/watch?v=bupetqS1SMU)
 * **TypeScript**
 * **Websocket**
-* **NeonDB (Postgres Sql)**
+* **NeonDB (Postgres Sql, ORM: Prisma)** [Click Here to setup the Prisma7](https://www.prisma.io/docs/orm)
+* **Next.js (SSR, SSG, ISR, CSR)**
 
 ---
 
@@ -41,13 +42,27 @@ Revision completed up to **class_34**
 ### some important commands:
 
 ```sh
-npm init -y # for declaration of package.json
+# Node
+npm init -y # for declaration of package.json.
 
-npm create vite@latest # this command is for react app using vite build tool
+# React
+npm create vite@latest # this command is for react app using vite build tool.
 
-npm install -g typescript
+# Typescript
+npm install -g typescript ts-node
 tsc --init
 tsc -b
+npm install -g ts-node
+ts-node ./src/index.ts # direct run the ts files, no need compilations.
+
+# Prisma
+npm install prisma
+npx prisma migrate dev --name <name> # creating or changing the original table.
+npx prisma migrate reset # for new comers, they can initialize the table.
+npx prisma generate # prismaClient generator.
+
+# Next
+npx create-next-app@latest
 ```
 
 ---
