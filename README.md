@@ -7,7 +7,7 @@ All class slides:
 
 ### ✅ Progress
 
-Revision completed up to **class_35** 
+Revision completed up to **class_37** 
 
 - **On the class_32 Add the Pub/Sub thing for websockets using Redis. (Important)**
 - Revise the class_28 typescript generics more indepth with its all keywords
@@ -28,7 +28,7 @@ Revision completed up to **class_35**
 * **TypeScript**
 * **Websocket**
 * **NeonDB (Postgres Sql, ORM: Prisma)** [Click Here to setup the Prisma7](https://www.prisma.io/docs/orm)
-* **Next.js (SSR, SSG, ISR, CSR)**
+* **Next.js (SSR, SSG, ISR, CSR)** [How to install prisma in the Next app. Click Here](https://www.youtube.com/watch?v=Ndhx_rNkoUw&t). - [Another Reference created by me](./class_37/01_notes/10_prisma_in_next.md), - [Another one](./class_37/01_notes/11_prisma_error.md)
 
 ---
 
@@ -43,23 +43,24 @@ Revision completed up to **class_35**
 
 ```sh
 # Node
-npm init -y # for declaration of package.json.
+npm init -y # For declaration of package.json.
 
 # React
-npm create vite@latest # this command is for react app using vite build tool.
+npm create vite@latest # This command is for react app using vite build tool.
 
 # Typescript
 npm install -g typescript ts-node
 tsc --init
 tsc -b
 npm install -g ts-node
-ts-node ./src/index.ts # direct run the ts files, no need compilations.
+ts-node ./src/index.ts # Direct run the ts files, no need compilations.
 
 # Prisma
 npm install prisma
-npx prisma migrate dev --name <name> # creating or changing the original table.
-npx prisma migrate reset # for new comers, they can initialize the table.
-npx prisma generate # prismaClient generator.
+npx prisma migrate dev --name <name> # Creating or changing the original table.
+npx prisma studio # To visually check the database
+npx prisma migrate reset # For new comers, they can initialize the table.
+npx prisma generate # PrismaClient generator.
 
 # Next
 npx create-next-app@latest
