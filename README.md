@@ -7,8 +7,9 @@ All class slides:
 
 ### ✅ Progress
 
-Revision completed up to **class_37** 
+Revision completed up to **class_38** 
 
+- On the class_39 the next auth is still remains unclear.
 - **On the class_32 Add the Pub/Sub thing for websockets using Redis. (Important)**
 - Revise the class_28 typescript generics more indepth with its all keywords
 - Things left is: class_25 > 03_assignment.md - [click](./class_25/03_Assignment.md)
@@ -83,3 +84,5 @@ npx create-next-app@latest
 5. Linkedin (Social Media)
 6. Github (our own Version Control)
 7. Zoom (Live Video Conferencing)
+
+
