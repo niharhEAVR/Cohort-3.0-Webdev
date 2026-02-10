@@ -65,5 +65,3 @@ Monorepos are ideal when:
 - Your development teams need to collaborate across projects.
 
 In contrast, polyrepos are more suitable for independent projects with minimal overlap.
-
-Would you like insights into tools like **Nx**, **Lerna**, or others for working with monorepos?

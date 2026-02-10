@@ -7,7 +7,7 @@ All class slides:
 
 ### ✅ Progress
 
-Revision completed up to **class_38** 
+Revision completed up to **class_41** 
 
 - On the class_39 the next auth is still remains unclear.
 - **On the class_32 Add the Pub/Sub thing for websockets using Redis. (Important)**
@@ -30,6 +30,8 @@ Revision completed up to **class_38**
 * **Websocket**
 * **NeonDB (Postgres Sql, ORM: Prisma)** [Click Here to setup the Prisma7](https://www.prisma.io/docs/orm)
 * **Next.js (SSR, SSG, ISR, CSR)** [How to install prisma in the Next app. Click Here](https://www.youtube.com/watch?v=Ndhx_rNkoUw&t). - [Another Reference created by me](./class_37/01_notes/10_prisma_in_next.md), - [Another one](./class_37/01_notes/11_prisma_error.md)
+* **TurboRepo**
+
 
 ---
 
@@ -45,6 +47,11 @@ Revision completed up to **class_38**
 ```sh
 # Node
 npm init -y # For declaration of package.json.
+
+
+# For saving DevDependencies
+# --save-dev 
+# -D
 
 # React
 npm create vite@latest # This command is for react app using vite build tool.
@@ -65,17 +72,20 @@ npx prisma generate # PrismaClient generator.
 
 # Next
 npx create-next-app@latest
+
+# Turborepo
+npx create-turbo@latest
 ```
 
 ---
 
 ### Some project lists:
 
-- Creative
+- `Creative`
 
 1. Private Chat App, Encrypted from outer world
 
-- Clones
+- `Clones`
 
 1. Multiple Minor projects : Simon Says Game, Real-time Weather App (React), Todo List App, Spotify Replica etc.
 2. Airbnb (Travel & Listing)

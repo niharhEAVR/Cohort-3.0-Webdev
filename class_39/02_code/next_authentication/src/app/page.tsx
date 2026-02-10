@@ -7,6 +7,9 @@ import Link from "next/link";
 export default function App({
   Component,
   pageProps: { session, ...pageProps },
+}: {
+  Component?: React.ComponentType<any>;
+  pageProps: { session?: any; [key: string]: any };
 }) {
   return (
     <SessionProvider session={session}>
@@ -15,7 +18,7 @@ export default function App({
   )
 }
 
-export default async function Home() {
+export async function Home() {
   await new Promise((resolve) => setTimeout(resolve, 2000));
 
 
