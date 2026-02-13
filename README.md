@@ -7,7 +7,7 @@ All class slides:
 
 ### ✅ Progress
 
-Revision completed up to **class_41_offline > 01_ssg_on_next** 
+Revision completed up to **class_41_offline** 
 
 - On the class_39 the next auth is still remains unclear.
 - **On the class_32 Add the Pub/Sub thing for websockets using Redis. (Important)**
